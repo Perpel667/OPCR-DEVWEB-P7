@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const authController = require("../controllers/auth.controller");
-/* const {requireUserAuth} = require('../middlewares/auth.middleware'); */
 
 // AUTH ROUTES //
     // Create a new user
