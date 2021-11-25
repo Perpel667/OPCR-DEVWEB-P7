@@ -9,6 +9,9 @@ const app = express();
 require('dotenv').config({path:'./config/.env'});
 require('./config/db');
 
+// import routes
+const userRoutes = require('./routes/user.routes')
+
 // server config
 
 const corsOptions = {
@@ -19,6 +22,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 app.use(cookieParser());
+
+//routes
+app.use('/api/user', userRoutes);
 
 
 // server
