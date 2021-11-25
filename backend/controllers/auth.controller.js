@@ -49,17 +49,22 @@ const maxAge = 3 * 24 * 60 * 60 * 1000;
  
   // Login
   exports.login = (req, res, next) => {
-    // on viens trouver l'utilisateur dans la base de données
     const email = req.body.email;
+    // Verify if user exist in DB
     const sqlQuery = `SELECT * FROM users WHERE email = '${email}'`
     sql.query(sqlQuery,async (err, data) => {
       if (err) {
-        res.status(404).json({error: err})
+        res.status(404).json({err: err})
+      }else if (data.length == 0) {
+          res.status(404).json({error:"Aucun utilisateur trouver avec cet email"}) //this is what you are missing
       } else {
+        // Compare password from request & DB
         const match = await bcrypt.compare(req.body.password, data[0].password)
         if(!match){
           res.status(200).json({error:true, message:"Mot de passe incorrect"})
         }
+        delete data[0].password;
+        // Create & place token in cookies
         const token = createToken(data[0].id);
             res.cookie('jwt', token, {httpOnly: true, maxAge:maxAge});
             res.status(200).json({
