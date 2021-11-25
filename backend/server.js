@@ -10,7 +10,7 @@ require('dotenv').config({path:'./config/.env'});
 require('./config/db');
 
 // import routes
-const userRoutes = require('./routes/user.routes')
+const authRoutes = require('./routes/auth.routes')
 
 // server config
 
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended:true }));
 app.use(cookieParser());
 
 //routes
-app.use('/api/user', userRoutes);
+app.use('/api/user', authRoutes);
 
 
 // server
