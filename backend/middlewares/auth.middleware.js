@@ -39,12 +39,12 @@ module.exports.Auth = (req, res,next) => {
           } else {
             jwt.verify(token,process.env.JWT_SECRET,async (err,decodedToken)=>{
                 if(err){
-                    console.log("mauvais token");
+                    res.status(404).json({message: "mauvais token"});
                 }else{
                    if(decodedToken.id == data[0].id){
                        next();
                    }else{
-                    res.status(404).send({
+                    res.status(403).send({
                         message: `Vous n'êtes pas autoriser a faire cette action.`
                       });
                    }
