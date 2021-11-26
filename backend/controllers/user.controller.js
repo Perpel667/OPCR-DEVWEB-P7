@@ -42,7 +42,7 @@ require('dotenv').config({path:'./config/.env'})
    sql.query(sqlQuery,user,(err, data) => {
       if (err) {
         console.log(err);
-        res.status(404).json({err: err})
+        res.status(400).json({err: err})
       } else{
         console.log(data);
         res.status(200).json({message : "Profil modifié"});
@@ -58,7 +58,7 @@ require('dotenv').config({path:'./config/.env'})
    sql.query(sqlQuery,user,(err, data) => {
       if (err) {
         console.log(err);
-        res.status(404).json({err: err})
+        res.status(400).json({err: err})
       } else{
         res.status(200).json({message : "Profil modifié"});
       } 
@@ -66,6 +66,24 @@ require('dotenv').config({path:'./config/.env'})
    }
  };
 
+ exports.deleteUser = (req, res) => {
+   const userId = req.params.id;
+    sql.query("DELETE FROM users WHERE id = ?", userId, (err, result) => {
+      if (err) {
+        console.log("error: ", err);
+        res.status(400).json({err: err})
+        return;
+      }
+      if (result.affectedRows == 0) {
+        // not found user with the id
+        res.status(404).json({ message : "Aucun profil trouvé pour cet Id" });
+        return;
+      }
+      console.log(`Utilisateur avec l'id ${userId} supprimé`);
+      res.status(200).json({ message : "Profil supprimé" });
+    });
+  };
+ 
 
 
  
