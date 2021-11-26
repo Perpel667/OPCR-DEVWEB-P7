@@ -11,7 +11,7 @@ module.exports = (req, res,next) => {
             if(err){
                 res.status(404).json({message: "Mauvais token fourni."})
             }
-            console.log(decodedToken.id);
+            /* console.log(decodedToken.id); */
             sql.query(sqlQuery, decodedToken.id, (err,data) => {
                 if(err){
                     res.status(200).json({message : "Aucun utilisateur trouvé avec cet id."})
