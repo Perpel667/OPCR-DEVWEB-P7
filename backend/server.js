@@ -12,6 +12,7 @@ require('./config/db');
 // import routes
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
+const postRoutes = require('./routes/post.routes');
 
 // server config
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 //routes
 app.use('/api/', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/post',postRoutes);
 
 
 
