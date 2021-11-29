@@ -61,8 +61,8 @@ exports.getAllPosts = (req, res) => {
       };
   
     
-      // update a post
-      exports.updatePost = (req, res) => {
+ // update a post
+exports.updatePost = (req, res) => {
         // Validate request
         if (!req.body) {
          res.status(400).send({
@@ -92,5 +92,25 @@ exports.getAllPosts = (req, res) => {
               res.status(404).json({message:"Aucun post trouver avec cet id"})
           }
       })
-       };
+};
+
+// delete post
+exports.deletePost = (req, res) => {
+     const sqlQuery = `DELETE FROM post WHERE id = ?`
+        sql.query(sqlQuery, req.params.id, (err, result) => {
+          if (err) {
+            console.log("error: ", err);
+            res.status(400).json({err:err});
+            return;
+          }
+          if (result.affectedRows == 0) {
+            res.status(404).json({message: "aucun post trouver avec cet id."});
+            return;
+          }
+      
+          console.log(`le post avec l'id ${req.params.id} a été supprimé`);
+          res.status(200).json({message:"Post supprimé"});
+        });
+}
+
       
