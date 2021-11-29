@@ -53,3 +53,27 @@ module.exports.Auth = (req, res,next) => {
           }
     })
   }
+
+  module.exports.requireAuth = (req, res,next) => {
+    const sqlQueryPost = `SELECT * FROM post WHERE id = ?`
+    const token = req.cookies.jwt;
+   sql.query(sqlQueryPost,req.params.id,(err, data)=>{
+       if (err) {
+           console.log(err);
+           res.status(404).json({message:"Aucun post trouver avec cet id."})
+       } else {
+           jwt.verify(token,process.env.JWT_SECRET, (err, decodedToken)=>{
+               if(err){
+                   console.log(err);
+                   res.status(400).json({err: err})
+               } else {
+                   if(data[0].user_id == decodedToken.id){
+                       next();
+                   } else {
+                       res.status(403).json({message:"Vous n'êtes pas autoriser a faire cette action."})
+                   }
+               }
+           })
+       }
+   })
+  }
