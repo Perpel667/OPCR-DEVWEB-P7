@@ -62,7 +62,6 @@ exports.getAllPosts = (req, res) => {
   
     
       // update a post
-
       exports.updatePost = (req, res) => {
         // Validate request
         if (!req.body) {
