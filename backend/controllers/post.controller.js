@@ -41,3 +41,23 @@ exports.create = (req, res, next) => {
   
    }; 
 
+ // Get all posts from the database
+exports.getAllPosts = (req, res) => {
+    const sqlQuery = `SELECT users.id, users.name,users.firstname, post.*, likes.likes
+    FROM post
+    LEFT JOIN users ON users.id = post.user_id 
+    LEFT JOIN likes ON likes.post_id = post.id 
+    ORDER BY post.date ASC;`
+
+        sql.query(sqlQuery, (err, result) => {
+          if (err) {
+            console.log("error: ", err);
+            res.status(400).json({error: err});
+            return;
+          }
+           console.log(result); 
+          res.status(200).json(result);
+        });
+      };
+  
+
