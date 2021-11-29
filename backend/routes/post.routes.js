@@ -9,6 +9,8 @@ router.post("/",Auth,PostController.create);
 router.get("/",Auth,PostController.getAllPosts);
 // update a post
 router.put("/:id",requireAuth,PostController.updatePost);
+// delete a post
+router.delete("/:id",requireAuth,PostController.deletePost);
 
 
 module.exports = router;
