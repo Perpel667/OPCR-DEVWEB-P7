@@ -60,4 +60,38 @@ exports.getAllPosts = (req, res) => {
         });
       };
   
+    
+      // update a post
 
+      exports.updatePost = (req, res) => {
+        // Validate request
+        if (!req.body) {
+         res.status(400).send({
+           message: "Veuillez renseignez les champs requis !"
+         });
+       }
+       const post = ({
+        message : req.body.message,
+        date : new Date()
+      });
+      const postId = req.params.id;
+      const sqlQuery = `UPDATE post SET ? WHERE id = ${postId}`;
+      sql.query(`SELECT * FROM post WHERE id = ${postId}`,(err, data)=>{
+          if (err) {
+              console.log(err);
+              res.status(400).json({err: err})
+          }
+          if(data.length){
+              sql.query(sqlQuery,post,(err,result)=>{
+                  if(err){
+                      console.log(err);
+                      res.status(400).json({err:err})
+                  }
+                  res.status(200).json(result)
+              })
+          } else{
+              res.status(404).json({message:"Aucun post trouver avec cet id"})
+          }
+      })
+       };
+      
