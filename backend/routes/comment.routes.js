@@ -7,5 +7,7 @@ const {requireAuth} = require("../middlewares/auth.middleware");
 router.post("/:id",Auth,PostController.createComment);
 // get all comments from a post
 router.get("/:id",Auth,PostController.getAllComment);
+// update a comment
+router.put("/:id",Auth,PostController.updateComment);
 
 module.exports = router;
