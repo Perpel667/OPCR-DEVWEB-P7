@@ -40,3 +40,34 @@ exports.getAllComment =(req, res,next) => {
     })
 
 }
+exports.updateComment =(req, res,next) => {
+     // get user's id from token
+     let userid;
+     const token = req.cookies.jwt;
+     jwt.verify(token,process.env.JWT_SECRET,(err,decodedToken) =>{
+         if(err){
+             res.status(200).json({message: "no token"})
+         }
+       userid = decodedToken.id
+     })
+   // get postId from params
+    const commentId = req.params.id;
+    sql.query(`SELECT * FROM comments WHERE id = ${commentId}`,(err,data) =>{
+        if(err){
+            console.log(err);
+        }
+        if(data[0].user_id == userid){
+            console.log("oui");
+           const sqlUpdateComment = `UPDATE comments SET message='${req.body.message}' WHERE id = ${commentId} AND user_id = ${userid}`
+           sql.query(sqlUpdateComment,(err,result)=>{
+               if (err) {
+                   res.status(404).json({ err: err})
+               } else {
+                   res.status(201).json(result)
+               }
+           })
+        } else {
+            res.status(403).json({message:"vous n'etes pas l'auteur de ce commentaire."})
+        }
+    })
+}
