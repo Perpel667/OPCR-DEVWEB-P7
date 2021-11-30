@@ -9,7 +9,7 @@ router.post("/",upload.single("image_url"),Auth,PostController.create);
 // get All posts
 router.get("/",Auth,PostController.getAllPosts);
 // update a post
-router.put("/:id",requireAuth,PostController.updatePost);
+router.put("/:id",upload.single("image_url"),PostController.updatePost);
 // delete a post
 router.delete("/:id",requireAuth,PostController.deletePost);
 
