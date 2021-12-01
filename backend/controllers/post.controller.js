@@ -3,11 +3,9 @@ const jwt = require('jsonwebtoken');
 const fs = require("fs"); //
 
 
-   exports.create = (req, res, next) => {
-    let { body, file } = req;
-    if (!file) delete req.body.image_url;
-    // get userid from jwt decoded token in cookies
-   let userid;
+// get user's id from token
+let userid;
+const getUserId = (req, res) =>{
    const token = req.cookies.jwt;
    jwt.verify(token,process.env.JWT_SECRET,(err,decodedToken) =>{
        if(err){
@@ -15,6 +13,14 @@ const fs = require("fs"); //
        }
      userid = decodedToken.id
    })
+}
+
+
+   exports.create = (req, res, next) => {
+    let { body, file } = req;
+    if (!file) delete req.body.image_url;
+    // get userid from jwt decoded token in cookies
+   getUserId(req,res);
    // declare body with user_id we picked up before
     body = {
       message : req.body.message,
@@ -142,4 +148,38 @@ exports.deletePost = (req, res) => {
           console.log(`le post avec l'id ${req.params.id} a été supprimé`);
           res.status(200).json({message:"Post supprimé"});
         });
+}
+
+
+// like or unlike a post
+exports.likeUnlikePost = (req, res) => {
+// get userid from jwt decoded token in cookies
+getUserId(req,res);
+const postId = req.params.id;
+const sqlSelectComment = `SELECT * FROM likes WHERE user_id = ${userid} AND post_id = ${postId}`;
+  sql.query(sqlSelectComment,(err,data)=>{
+    if (err) {
+      console.log(err);
+      res.status(404).json({ err:err })
+    }
+    if(data.length === 0){
+      const sqlInsertComment = `INSERT INTO likes (user_id,post_id) VALUES (${userid}, ${postId})`;
+      sql.query(sqlInsertComment,(err,result)=>{
+        if (err) {
+          console.log(err);
+          res.status(404).json({ err:err })
+        }
+        res.status(200).json(result)
+      })
+    } else {
+      const sqlDeleteComment = `DELETE FROM likes WHERE user_id = ${userid} AND post_id = ${postId}`;
+      sql.query(sqlDeleteComment, (err, result)=>{
+        if (err) {
+          console.log(err);
+          res.status(404).json({ err:err})
+        }
+        res.status(200).json(result);
+      })
+    }
+  })
 }
