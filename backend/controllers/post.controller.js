@@ -51,10 +51,9 @@ const getUserId = (req, res) =>{
 
  // Get all posts from the database
 exports.getAllPosts = (req, res) => {
-    const sqlQuery = `SELECT users.id, users.name,users.firstname, post.*, likes.likes
-    FROM post
-    LEFT JOIN users ON users.id = post.user_id 
-    LEFT JOIN likes ON likes.post_id = post.id 
+    const sqlQuery = `SELECT users.id, users.name,users.firstname, post.*,(select count(*) from likes WHERE likes.post_id = post.id) as 'Likes'
+    FROM post 
+    JOIN users ON users.id = post.user_id 
     ORDER BY post.date ASC;`
 
         sql.query(sqlQuery, (err, result) => {
