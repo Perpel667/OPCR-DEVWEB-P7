@@ -183,3 +183,17 @@ const sqlSelectComment = `SELECT * FROM likes WHERE user_id = ${userid} AND post
     }
   })
 }
+
+// get how many likes a post have
+
+exports.countLikes = (req, res) => {
+  const postId = req.params.id;
+  const sqlTotalLikes = `SELECT COUNT(*) AS TotalLikes FROM likes WHERE post_id = ${postId}`
+  sql.query(sqlTotalLikes, (err, result)=>{
+    if (err) {
+      console.log(err);
+      res.status(404).json({ err:err})
+    }
+    res.status(200).json(result)
+  })
+}
