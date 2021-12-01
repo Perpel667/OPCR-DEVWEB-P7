@@ -1,6 +1,7 @@
 // dependencies
 const express = require('express');
 const cors = require('cors');
+const helmet = require("helmet");
 const cookieParser = require('cookie-parser');
 const app = express();
 const path = require('path');
@@ -9,6 +10,17 @@ const path = require('path');
 
 require('dotenv').config({path:'./config/.env'});
 require('./config/db');
+
+// definition des headers
+app.use((req, res, next) => {
+    // nous permet d'acceder a l'API depuis n'importe quelle origine
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    // nous permet d'ajouter les headers mentionnés aux requetes envoyés a l'API
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    // nous permet d'envoyer des requetes avec les methodes mentionnées
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
+  });
 
 // import routes
 const authRoutes = require('./routes/auth.routes');
@@ -21,7 +33,7 @@ const commentRoutes = require('./routes/comment.routes');
 const corsOptions = {
     origin : "http://localhost:5000"
 };
-
+app.use(helmet());
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
