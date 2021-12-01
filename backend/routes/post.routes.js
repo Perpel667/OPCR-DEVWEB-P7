@@ -14,4 +14,8 @@ router.put("/:id",upload.single("image_url"),PostController.updatePost);
 router.delete("/:id",requireAuth,PostController.deletePost);
 
 
+// LIKES
+
+router.patch("/:id/likes",Auth,PostController.likeUnlikePost);
+
 module.exports = router;
