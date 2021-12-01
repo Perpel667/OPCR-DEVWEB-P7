@@ -5,17 +5,19 @@ const {requireAuth} = require("../middlewares/auth.middleware");
 const upload = require("../middlewares/multer.config")
 
 // Crete a post
-router.post("/",upload.single("image_url"),Auth,PostController.create);
+router.post("/",Auth,upload.single("image_url"),PostController.create);
 // get All posts
 router.get("/",Auth,PostController.getAllPosts);
 // update a post
-router.put("/:id",upload.single("image_url"),PostController.updatePost);
+router.put("/:id",requireAuth,upload.single("image_url"),PostController.updatePost);
 // delete a post
 router.delete("/:id",requireAuth,PostController.deletePost);
 
 
 // LIKES
-
+// like or unlike a post
 router.patch("/:id/likes",Auth,PostController.likeUnlikePost);
+//get how many likes a post have
+router.get("/:id/likes",Auth,PostController.countLikes);
 
 module.exports = router;
