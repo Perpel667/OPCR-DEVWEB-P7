@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express();
+const path = require('path');
 
 // DB config & .env
 
@@ -25,6 +26,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 app.use(cookieParser());
+
+
+app.use('/api/images', express.static(path.join(__dirname, 'images')));
 
 //routes
 app.use('/api/', authRoutes);
