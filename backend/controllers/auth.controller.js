@@ -61,7 +61,7 @@ const maxAge = 3 * 24 * 60 * 60 * 1000;
         // Compare password from request & DB
         const match = await bcrypt.compare(req.body.password, data[0].password)
         if(!match){
-          res.status(200).json({error:true, message:"Mot de passe incorrect"})
+          res.status(404).json({error:"Mot de passe incorrect"})
         }
         delete data[0].password;
         // Create & place token in cookies
