@@ -19,6 +19,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     // nous permet d'envoyer des requetes avec les methodes mentionnées
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     next();
   });
 
@@ -31,7 +32,7 @@ const commentRoutes = require('./routes/comment.routes');
 // server config
 
 const corsOptions = {
-    origin : "http://localhost:5000"
+    origin : ["http://localhost:5000","http://localhost:3001"]
 };
 app.use(helmet());
 app.use(cors(corsOptions));
