@@ -10,9 +10,9 @@ export default function index() {
     return (
         <Router>
         <Routes>
-          <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/register" element={<Register/>}/>
           <Route exact path="/login" element={<Login/>}/>
+          <Route exact path="/register" element={<Register/>}/>
+          <Route exact path="/" element={<Home/>}/>
           <Route exact path="/profile" element={<Profile/>}/>
         </Routes>
     </Router>
