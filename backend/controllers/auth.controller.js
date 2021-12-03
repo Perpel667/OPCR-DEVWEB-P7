@@ -26,7 +26,7 @@ const sqlQuery = "INSERT INTO users SET ?"
 sql.query(sqlQuery,user,(err, result) => {
     if (err) {
         console.log("error: ", err);
-         res.status(200).json(err.message);
+         res.status(404).json(err.message);
         return;
       }
       res.status(201).json({ message: "Utilisateur créer !" });
