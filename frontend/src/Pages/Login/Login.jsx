@@ -73,8 +73,8 @@ export default function Login() {
                             <input  type="password" id="password" placeholder="Mot de passe" className='loginInput' onClick={DeletePasswordErrorMessage} onChange={(e) => setPassword(e.target.value)} value={password} required/>
                             <div className="password error"></div>
                             <button input type="submit" className="loginButton">Se connecter</button>
+                            <button className="loginRegisterButton" onClick={(e)=> window.location = "/register"}>Créer un compte</button>
                         </form>
-                        <button className="loginRegisterButton" onClick={(e)=> window.location = "/register"}>Créer un compte</button>
                     </div>
                 </div>
             </div>
