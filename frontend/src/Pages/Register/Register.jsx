@@ -1,8 +1,15 @@
 import './register.scss'
  import React, { useState } from "react";
+ import { useForm } from "react-hook-form";
  import axios from "axios";
 
 export default function Register() {
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+      } = useForm();
 
     // UseState
     const [email,setEmail] = useState ("");
@@ -13,42 +20,10 @@ export default function Register() {
 
     // Register Request
     const handleRegister = (e) =>{
-        e.preventDefault();
+        
 
         const emailError = document.querySelector('.email.error');
-        const nameError = document.querySelector('.name.error');
-        const firstNameError = document.querySelector('.firstname.error')
-        const passwordError = document.querySelector('.password.error');
 
-        let message = "";
-        let error = false;
-
-        if(name.length < 2 || name.length > 30){
-            nameError.innerHTML = "Doit contenir entre 2 et 30 caractères."
-            return
-        } if (firstname.length < 2 || firstname.length > 30){
-            firstNameError.innerHTML = "Doit contenir entre 2 et 30 caractères."
-            return
-        }if (password.length < 8 ) {
-          message += "Le mot de passe doit contenir au moins 8 caractères. ";
-          error = true;
-        }
-        if (password.search(/[a-z]/) === -1) {
-          message += "Le mot de passe doit contenir au moins 1 minuscule. ";
-          error = true;
-        }
-        if (password.search(/[A-Z]/) === -1) {
-          message += "Le mot de passe doit contenir au moins 1 majuscule. ";
-          error = true;
-        }
-        if (password.search (/[0-9]/) < 2) {
-          message += "Le mot de passe doit contenir au moins 2 chiffres.";
-          error = true;
-        }
-        if (error) {
-          passwordError.innerHTML = message;
-          return false;
-        }
 
         axios({
             method: "POST",
@@ -62,6 +37,7 @@ export default function Register() {
             },
         })
        .then(response =>{
+           window.location = "/login"
            return response.data
        })
        .then(data =>{
@@ -85,19 +61,59 @@ export default function Register() {
         </div>
         <div className="registerRight">
             <div className="registerBox">
-                <form action="" onSubmit={handleRegister} className="registerForm">
+                <form action="" onSubmit={handleSubmit(handleRegister)} className="registerForm">
                     <label htmlFor="email">Email</label>
-                    <input type="email" id="email" placeholder="Email" className="registerInput" onChange={(e) => setEmail(e.target.value)} value={email} required />
-                    <div className="email error"></div>
+                    <input
+                    {...register("email", {
+                        required: true,
+                        pattern: /^\S+@\S+\.\S+$/
+                      })}
+                    type="text" id="email" placeholder="Email" className="registerInput" onChange={(e) => setEmail(e.target.value)} value={email} />
+                    <div className="email error">
+                        {errors?.email?.type === "required" && <p className="error">Ce champs est obligatoire.</p>}
+                        {errors?.email?.type === "pattern" && <p className="error">Veuillez renseignez un email valide.</p>}
+                        </div>
                     <label htmlFor="name">Nom</label>
-                    <input type="text" id="name" placeholder="Nom" className="registerInput"  onChange={(e) => setName(e.target.value)} value={name} required />
-                    <div className="name error"></div>
+                    <input
+                    {...register("name", {
+                        required: true,
+                        minLength:2,
+                        maxLength: 30,
+                        pattern: /^[A-Za-z]+$/i
+                      })}
+                    type="text" id="name" placeholder="Nom" className="registerInput"  onChange={(e) => setName(e.target.value)} value={name} />
+                    <div className="name error">
+                    {errors?.name?.type === "required" && <p className="error">Ce champs est obligatoire.</p>}
+                    {errors?.name?.type === "maxLength" && ( <p className="error">Ce champs ne peu exceder 30 caractères.</p>)}
+                    {errors?.name?.type === "minLength" && ( <p className="error">Ce champs doit avoir 2 caractères minimum.</p> )}
+                    {errors?.name?.type === "pattern" && (<p className="error">Ce champs n'accepte pas les chiffres.</p>)}
+                    </div>
                     <label htmlFor="firstname">Prénom</label>
-                    <input type="text" id="firstname" placeholder="Prénom" className="registerInput"  onChange={(e) => setFirstName(e.target.value)} value={firstname} required />
-                    <div className="firstname error"></div>
+                    <input
+                    {...register("firstname", {
+                        required: true,
+                        minLength:2,
+                        maxLength: 30,
+                        pattern: /^[A-Za-z]+$/i
+                      })}
+                    type="text" id="firstname" placeholder="Prénom" className="registerInput"  onChange={(e) => setFirstName(e.target.value)} value={firstname} />
+                    <div className="firstname error">
+                    {errors?.firstname?.type === "required" && <p className="error">Ce champs est obligatoire.</p>}
+                    {errors?.firstname?.type === "maxLength" && ( <p className="error">Ce champs ne peu exceder 30 caractères.</p>)}
+                    {errors?.firstname?.type === "minLength" && ( <p className="error">Ce champs doit avoir 2 caractères minimum.</p> )}
+                    {errors?.firstname?.type === "pattern" && (<p className="error">Ce champs n'accepte pas les chiffres.</p>)}
+                    </div>
                     <label htmlFor="password">Mot de passe</label>
-                    <input  type="password" id="password" placeholder="Mot de passe" className='registerInput' onChange={(e) => setPassword(e.target.value)} value={password} required/>
-                    <div className="password error"></div>
+                    <input 
+                    {...register("password", {
+                        required: true,
+                        pattern: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}/
+                      })}
+                    type="password" id="password" placeholder="Mot de passe" className='registerInput' onChange={(e) => setPassword(e.target.value)} value={password}/>
+                    <div className="password error">
+                    {errors?.password?.type === "required" && (<p>Ce champs est obligatoire.</p>)}
+                    {errors?.password?.type === "pattern" && (<p>Au moins 8 caractères dont une majuscule une minuscule un chiffre et un symbole.</p>)}
+                    </div>
                     <button input type="submit" className="registerButton">S'inscrire</button>
                     <button className="registerRegisterButton" onClick={(e)=> window.location = "/login"}>Se connecter</button>
                 </form>
