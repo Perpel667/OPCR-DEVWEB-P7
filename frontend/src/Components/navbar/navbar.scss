@@ -1,0 +1,39 @@
+.navbarContainer {
+  height: 50px;
+  width: 100%;
+  background-color: #0e213f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbarLeft {
+  height: 50px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.navbarRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+  color: white;
+}
+.navbarLink {
+  padding: 1rem;
+  cursor: pointer;
+}
+.logo {
+  width: 100%;
+  height: 32px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.profilePicture {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
