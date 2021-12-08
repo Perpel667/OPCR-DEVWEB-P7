@@ -35,7 +35,7 @@ const corsOptions = {
     origin : ["http://localhost:5000","http://localhost:3000"]
 };
 app.use(helmet());
-/* app.use(cors(corsOptions)); */
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 app.use(cookieParser());
