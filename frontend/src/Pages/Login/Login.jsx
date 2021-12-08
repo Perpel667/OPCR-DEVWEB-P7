@@ -1,8 +1,12 @@
 import './login.scss';
 import React, { useState } from "react";
 import axios from "axios";
+/* import { useDispatch } from 'react-redux'; */
+/* import { getUserId } from "../../actions/user.actions" */
 
 export default function Login() {
+
+    /* const dispatch = useDispatch(); */
 
     // UseState
     const [email,setEmail] = useState ("");
@@ -23,7 +27,7 @@ export default function Login() {
     }
 
     // handleLogin 
-    const handleLogin = (e) =>{
+    const handleLogin = (e) => {
         e.preventDefault();
 
         const emailError = document.querySelector('.email.error');
@@ -39,11 +43,12 @@ export default function Login() {
             },
         })
        .then(response =>{
-           window.location = "/"
            return response.data
        })
        .then(data =>{
-           console.log(data);
+            localStorage.setItem('userId', data.userId);
+            window.location = window.location = "/"
+            /* dispatch(getUserId(data.userId)); */
        })
        .catch(error =>{
            if(error.response.data.error === "Mot de passe incorrect"){
