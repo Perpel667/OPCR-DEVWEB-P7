@@ -1,6 +1,14 @@
 import './navbar.scss'
+ import { useDispatch } from 'react-redux';
+import { getUser } from "../../actions/user.actions"
 
 export default function Navbar() {
+
+    const dispatch = useDispatch();
+
+    const userId = localStorage.getItem('userId');
+
+    dispatch(getUser(userId));
     return (
         <div className="navbarContainer">
             <div className="navbarLeft">
