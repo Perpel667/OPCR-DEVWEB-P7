@@ -20,6 +20,7 @@ exports.create = (req, res, next) => {
         email : req.body.email,
         name : req.body.name,
         firstname : req.body.firstname,
+        image: './images/profiles/defaultProfilPic.png',
         password : hash
     });
 const sqlQuery = "INSERT INTO users SET ?"
