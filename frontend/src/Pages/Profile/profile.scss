@@ -1,26 +1,73 @@
-.profileTitle {
-  height: 230px;
-  position: relative;
+.profile {
+  &Title {
+    height: 230px;
+    position: relative;
+  }
+  &UserImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 150px;
+    border: 3px solid #0e213f;
+    background-color: #fff;
+  }
+  &CoverImg {
+    position: absolute;
+    inset: 0;
+    z-index: -1000;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 3px solid #0e213f;
+  }
+  &Bottom {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
-.profileUserImg {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  top: 150px;
-  border: 3px solid #0e213f;
-  background-color: #fff;
+
+.btn {
+  max-width: 190px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 1px 3px 8px #ababab;
+  font-weight: 700;
 }
-.profileCoverImg {
-  position: absolute;
-  inset: 0;
-  z-index: -1000;
+
+.delete-btn {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-bottom: 3px solid #0e213f;
+  margin-top: 1rem;
+  background-color: #dc3545;
+}
+.confirm-btn {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: #28a745;
+}
+
+.modifyPasswordForm {
+  display: flex;
+  color: black;
+  flex-direction: column;
+  align-items: center;
+}
+label {
+  color: black;
+}
+.password {
+  border: none;
+  color: black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 1px 3px 8px #ababab;
 }

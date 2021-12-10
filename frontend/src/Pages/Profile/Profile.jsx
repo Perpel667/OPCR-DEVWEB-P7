@@ -18,7 +18,14 @@ export default function Profile() {
             </div>
           </div>
           <div className="profileBottom">
-              <button>Modifier votre mot de passe</button>
+              <form className="modifyPasswordForm" action="" method="post">
+                  <label htmlFor="modifyPassword">Modifier votre mot de passe</label>
+                  <input className="changePassword password" type="password" />
+                  <label htmlFor="confirmPassword">Confirmez</label>
+                  <input className="confirmPassword password" type="password" />
+                  <button className="confirm-btn btn">Confirmer</button>
+              </form>
+              <button className="delete-btn btn">Supprimer votre compte</button>
           </div>
         </div>
         </div>
