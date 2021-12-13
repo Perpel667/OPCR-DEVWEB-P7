@@ -90,3 +90,15 @@
   color: #28a745;
   font-weight: 500;
 }
+.deleteMessage {
+  color: #dc3545;
+  font-weight: 500;
+}
+.deleteValid {
+  background-color: #dc3545;
+  margin-right: 10px;
+}
+.deleteCancel {
+  background-color: gray;
+  margin-left: 10px;
+}

@@ -16,11 +16,15 @@ export default function Profile() {
       } = useForm();
 
       const [password,setPassword] = useState ("");
+      const [DeleteConfirm, setDeleteConfirm] = useState(false);
+      const toggleChecked = () => setDeleteConfirm(value => !value);
 
 
-
+      // get userData from redux store
     const userData = useSelector((state) => state.userReducer)
 
+
+    // modify password handle
     const handleModify = (e) =>{
 
         const succesMessage = document.querySelector('.password.succes');
@@ -47,9 +51,32 @@ export default function Profile() {
            return
        })
     }
+
+    // delete account handle
+    const handleDelete = (e) =>{
+
+      axios({
+          method: "DELETE",
+          url:`http://localhost:5000/api/user/${userData.id}`,
+          withCredentials: true,
+      })
+     .then(response =>{
+         return response.data
+     })
+     .then(data =>{
+         console.log(data);
+         window.location = '/register';
+     })
+     .catch(error =>{
+         console.log(error.response.data);
+         return
+     })
+  }
+
     return (
         <div>
             <Navbar />
+
             <div className="profile">
           <div className="profileTop">
             <div className="profileTitle">
@@ -77,16 +104,23 @@ export default function Profile() {
                         required: true,
                         validate : value => value === password || "Ce n'est pas le même mot de passe"
                       })}
-                    type="password" id="Confirmpassword" placeholder="Confirmez votren nouveau mot de passe" className='confirmPassword ProfilePassword'/>
+                    type="password" id="Confirmpassword" placeholder="Confirmez" className='confirmPassword ProfilePassword'/>
                     <div className="password error">
                     {errors?.ConfirmPassword?.type === "required" && (<p>Ce champs est obligatoire.</p>)}
                     {errors?.ConfirmPassword?.type === "validate" && (<p>Ce n'est pas le même mot de passe</p>)}
                     </div>
                     <div className="password succes"></div>
                   {/* <input placeholder="Confirmez votre nouveau mot de passe" className="confirmPassword ProfilePassword" type="password" /> */}
-                  <button type="submit" className="confirm-btn btn">Confirmer</button>
+                  <button type="submit" className="confirm-btn form-btn">Confirmer</button>
               </form>
-              <button className="delete-btn btn">Supprimer votre compte</button>
+              <button className="delete-btn form-btn" onClick={setDeleteConfirm}>Supprimer votre compte</button>
+              {DeleteConfirm &&
+                    <div className="deleteConfirmation">
+                        <p className="deleteMessage">Souhaitez vous vraiment supprimer votre compte ?</p>
+                        <button className="deleteValid form-btn" onClick={handleDelete}>Oui</button>
+                        <button className="deleteCancel form-btn" onClick={toggleChecked}>Annuler</button>
+                    </div>
+                     }
           </div>
         </div>
         </div>
