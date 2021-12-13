@@ -1,4 +1,7 @@
 .profile {
+  &Top {
+    height: 30vh;
+  }
   &Title {
     height: 230px;
     position: relative;
@@ -26,10 +29,9 @@
     border-bottom: 3px solid #0e213f;
   }
   &Bottom {
-    margin-top: 6rem;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 }
 
@@ -45,7 +47,7 @@
 
 .delete-btn {
   width: 100%;
-  margin-top: 1rem;
+  margin: auto;
   background-color: #dc3545;
 }
 .confirm-btn {
@@ -59,15 +61,29 @@
   color: black;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+  background-color: #e5e5e5;
+  border-radius: 10px;
+  box-shadow: 1px 3px 8px #ababab;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 1rem;
+  max-width: 380px;
 }
-label {
+.modifyPasswordForm label {
   color: black;
 }
-.password {
-  border: none;
+.ProfilePassword {
+  border: 1px solid #ababab;
   color: black;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
   box-shadow: 1px 3px 8px #ababab;
+  width: 80%;
+  max-width: 300px;
+}
+.succes {
+  color: #28a745;
+  font-weight: 500;
 }
