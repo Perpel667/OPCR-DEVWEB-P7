@@ -28,7 +28,7 @@
   }
 }
 .navbarLinkMobile {
-  padding: 1rem;
+  padding: 0 1rem;
   cursor: pointer;
   @media screen and (min-width: 425px) {
     display: none;
@@ -53,7 +53,8 @@
   &Links {
     cursor: pointer;
     font-size: 16px;
-    margin: 10px;
+    padding: 10px;
+    margin: 0;
   }
 }
 .navbarIcon svg {

@@ -37,7 +37,7 @@ export default function Navbar() {
                     {isOpen &&
                     <div className="hamburgerMenu">
                         <p className="hamburgerMenuLinks" onClick={(e)=> window.location = "/profile"}>Mon Profil</p>
-                        <p className="hamburgerMenuLinks"onClick={(e)=> window.location = "/"}>Fil d'actualité</p>
+                        <p className="hamburgerMenuLinks" onClick={(e)=> window.location = "/"}>Fil d'actualité</p>
                     </div>
                      }
                 
