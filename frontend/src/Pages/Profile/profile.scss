@@ -36,7 +36,7 @@
   }
 }
 
-.btn {
+.form-btn {
   max-width: 190px;
   padding: 10px;
   border: none;
@@ -44,6 +44,7 @@
   color: white;
   box-shadow: 1px 3px 8px #ababab;
   font-weight: 700;
+  font-size: 16px;
 }
 
 .delete-btn {
@@ -78,11 +79,12 @@
   border: 1px solid #ababab;
   color: black;
   border-radius: 10px;
-  padding: 10px;
+  padding: 12px;
   margin: 10px;
   box-shadow: 1px 3px 8px #ababab;
   width: 80%;
   max-width: 300px;
+  font-size: 16px;
 }
 .succes {
   color: #28a745;
