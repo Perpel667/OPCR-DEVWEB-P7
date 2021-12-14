@@ -42,6 +42,7 @@
 }
 
 .hamburgerMenu {
+  z-index: 1000;
   position: absolute;
   right: 0px;
   top: 50px;
@@ -55,8 +56,12 @@
     font-size: 16px;
     padding: 10px;
     margin: 0;
+    &:hover {
+      background-color: #132c54;
+    }
   }
 }
+
 .navbarIcon svg {
   width: 32px;
   height: 32px;
