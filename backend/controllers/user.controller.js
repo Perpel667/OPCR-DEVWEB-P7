@@ -84,7 +84,28 @@ require('dotenv').config({path:'./config/.env'})
     });
   };
  
+// Modify user's profile picture
+exports.updateProfilePicture = (req, res) => {
+  // Validate request
+  if (!req.body) {
+   res.status(400).send({
+     message: "Veuillez selectionner une image"
+   });
+ } else {
+  let { body, file } = req;
+    const userId = req.params.id;
 
+ const sqlQuery = `UPDATE users SET image='./images/profiles/${file.filename}' WHERE id = ${userId}`;
+ sql.query(sqlQuery,(err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(400).json({err: err})
+    } else{
+      res.status(200).json({message : "Photo de profil modifiée"});
+    } 
+  });
+ }
+};
 
  
 
