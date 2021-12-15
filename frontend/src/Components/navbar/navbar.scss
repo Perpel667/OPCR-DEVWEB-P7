@@ -21,10 +21,13 @@
   color: white;
 }
 .navbarLink {
-  padding: 1rem;
+  margin: 0 0.5rem;
   cursor: pointer;
   @media screen and (max-width: 424px) {
     display: none;
+  }
+  &:hover {
+    color: #c1d4f1;
   }
 }
 .navbarLinkMobile {
@@ -35,11 +38,11 @@
   }
 }
 
-.hamburger-react {
+/* .hamburger-react {
   &:focus + .hamburgerMenu {
-    animation: slidein 300ms ease-in-out both;
+    animation: slidein 300ms ease-in-out forwards;
   }
-}
+} */
 
 .hamburgerMenu {
   z-index: 1000;
@@ -51,6 +54,7 @@
   box-shadow: -1px 2px 5px 0 #0e213f;
   visibility: hidden;
   transform: translateY(-110%);
+  animation: slidein 300ms ease-in-out forwards;
   &Links {
     cursor: pointer;
     font-size: 16px;
