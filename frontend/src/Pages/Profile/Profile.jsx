@@ -1,5 +1,6 @@
 import Navbar from '../../Components/navbar/Navbar';
 import { useState } from "react";
+import {useEffect} from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
 import axios from "axios";
@@ -76,6 +77,7 @@ export default function Profile() {
          return
      })
   }
+ 
     // modifiy profile picture handle
     const HandleUpdateProfilePicture = (e) =>{
       function setPictureAsync() {
@@ -87,7 +89,6 @@ export default function Profile() {
       
       async function getPictureAsync() {
         const result = await setPictureAsync();
-        console.log(result);
         /* const image = new FormData();
         image.append("image", result);
 
@@ -108,7 +109,25 @@ export default function Profile() {
       getPictureAsync();
          
   }
+  useEffect(() => {
+    const image = new FormData();
+        image.append("image", picture);
 
+          axios({
+              method: "PUT",
+              url: `http://localhost:5000/api/user/picture/${userData.id}`,
+              data: image,
+              headers: { "Content-Type": "multipart/form-data" },
+              withCredentials: true,
+            })
+            .then(response =>{
+                console.log(response);
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+  }, 
+  [HandleUpdateProfilePicture])
     return (
         <div>
             <Navbar />
