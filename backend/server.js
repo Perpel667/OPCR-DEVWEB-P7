@@ -32,7 +32,7 @@ const commentRoutes = require('./routes/comment.routes');
 // server config
 
 const corsOptions = {
-    origin : ["http://localhost:5000","http://localhost:3000"]
+    origin : ["http://localhost:5000","http://localhost:3000","http://localhost:3001"]
 };
 app.use(helmet());
 app.use(cors(corsOptions));
