@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
 import axios from "axios";
 import './profile.scss';
+import { AiFillCamera } from "react-icons/ai";
 import profileBackground from '../../assets/images/profile-background2.jpeg';
 
 
@@ -15,10 +16,13 @@ export default function Profile() {
         formState: { errors },
       } = useForm();
 
+      // password states
       const [password,setPassword] = useState ("");
+      // delete account states
       const [DeleteConfirm, setDeleteConfirm] = useState(false);
       const toggleChecked = () => setDeleteConfirm(value => !value);
-
+      // modify picture states
+      const [picture, setPicture] = useState(null);
 
       // get userData from redux store
     const userData = useSelector((state) => state.userReducer)
@@ -72,6 +76,38 @@ export default function Profile() {
          return
      })
   }
+    // modifiy profile picture handle
+    const HandleUpdateProfilePicture = (e) =>{
+      function setPictureAsync() {
+        return new Promise(resolve => {
+            setPicture(e.target.files[0])
+            resolve(picture);
+        });
+      }
+      
+      async function getPictureAsync() {
+        const result = await setPictureAsync();
+        console.log(result);
+        /* const image = new FormData();
+        image.append("image", result);
+
+          axios({
+              method: "PUT",
+              url: `http://localhost:5000/api/user/picture/${userData.id}`,
+              data: image,
+              headers: { "Content-Type": "multipart/form-data" },
+              withCredentials: true,
+            })
+            .then(response =>{
+                console.log(response);
+            })
+            .catch(error =>{
+                console.log(error);
+            }) */
+      }
+      getPictureAsync();
+         
+  }
 
     return (
         <div>
@@ -81,7 +117,16 @@ export default function Profile() {
           <div className="profileTop">
             <div className="profileTitle">
                 <img className="profileCoverImg" src={profileBackground} alt="" />
-            <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="profileUserImg" />
+                <div className="profilePictureContainer">
+                    <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="profileUserImg" />
+                        <div className="modifyUserImg">
+                            <input type="file" name="image" id="image" style={{display: "none"}} onChange={HandleUpdateProfilePicture}/>
+                            <label htmlFor="image" >
+                                <span className='editImage'><AiFillCamera /></span>
+                            </label> 
+                         </div>
+                </div>
+            
             </div>
           </div>
           <div className="profileBottom">
