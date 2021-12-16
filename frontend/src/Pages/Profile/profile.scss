@@ -3,20 +3,22 @@
     height: 30vh;
   }
   &Title {
-    z-index: -10;
+    /* z-index: -10; */
     height: 230px;
     position: relative;
+  }
+  &PictureContainer {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 150px;
   }
   &UserImg {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: 150px;
     border: 3px solid #0e213f;
     background-color: #fff;
   }
@@ -35,7 +37,25 @@
     flex-direction: column;
   }
 }
-
+.modifyUserImg {
+  cursor: pointer;
+  position: absolute;
+  left: 100px;
+  background-color: #e5e5e5;
+  right: 0;
+  margin: auto;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  top: 115px;
+  border: 3px solid #0e213f;
+  justify-content: center;
+  align-items: center;
+}
+.editImage {
+  color: #0e213f;
+}
 .form-btn {
   max-width: 190px;
   padding: 10px;
