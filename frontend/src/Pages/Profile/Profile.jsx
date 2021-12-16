@@ -89,45 +89,34 @@ export default function Profile() {
       
       async function getPictureAsync() {
         const result = await setPictureAsync();
-        /* const image = new FormData();
-        image.append("image", result);
-
-          axios({
-              method: "PUT",
-              url: `http://localhost:5000/api/user/picture/${userData.id}`,
-              data: image,
-              headers: { "Content-Type": "multipart/form-data" },
-              withCredentials: true,
-            })
-            .then(response =>{
-                console.log(response);
-            })
-            .catch(error =>{
-                console.log(error);
-            }) */
       }
       getPictureAsync();
          
   }
+  // send the updated profile pic to server //
   useEffect(() => {
+    if(picture === null){
+      return
+    }
     const image = new FormData();
-        image.append("image", picture);
+    image.append("image", picture);
 
-          axios({
-              method: "PUT",
-              url: `http://localhost:5000/api/user/picture/${userData.id}`,
-              data: image,
-              headers: { "Content-Type": "multipart/form-data" },
-              withCredentials: true,
-            })
-            .then(response =>{
-                console.log(response);
-            })
-            .catch(error =>{
-                console.log(error);
-            })
-  }, 
-  [HandleUpdateProfilePicture])
+      axios({
+          method: "PUT",
+          url: `http://localhost:5000/api/user/picture/${userData.id}`,
+          data: image,
+          headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true,
+        })
+        .then(response =>{
+            console.log(response);
+        })
+        .catch(error =>{
+            console.log(error);
+        })
+  },[picture]);
+
+
     return (
         <div>
             <Navbar />
