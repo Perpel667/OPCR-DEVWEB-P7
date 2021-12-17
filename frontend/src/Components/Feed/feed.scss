@@ -1,3 +1,16 @@
+.Feed {
+  display: flex;
+  justify-content: center;
+}
+
 .feedWrapper {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 743px;
+  align-items: center;
+}
+.postsWrapper {
+  padding: 0;
 }
