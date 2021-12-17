@@ -88,7 +88,7 @@ export default function Profile() {
       }
       
       async function getPictureAsync() {
-        const result = await setPictureAsync();
+         await setPictureAsync();
       }
       getPictureAsync();
          
@@ -114,7 +114,7 @@ export default function Profile() {
         .catch(error =>{
             console.log(error);
         })
-  },[picture]);
+  },[picture,userData.id]);
 
 
     return (
