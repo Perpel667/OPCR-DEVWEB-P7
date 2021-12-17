@@ -16,7 +16,7 @@ export default function Share() {
                 <div className="shareBottom">
                     <div className="shareOptions">
                         <div className="shareOption">
-                        <GoFileMedia htmlColor="tomato" className="shareIcon"/>
+                        <GoFileMedia className="shareIcon"/>
                             <span className="shareOptionText">Ajouter une photo</span>
                         </div>
                     </div>
