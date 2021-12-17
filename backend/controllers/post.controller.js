@@ -54,7 +54,7 @@ exports.getAllPosts = (req, res) => {
     const sqlQuery = `SELECT users.id, users.name,users.firstname,users.image as 'profilePicture', post.*,(select count(*) from likes WHERE likes.post_id = post.id) as 'Likes'
     FROM post 
     JOIN users ON users.id = post.user_id 
-    ORDER BY post.date ASC;`
+    ORDER BY post.date DESC;`
 
         sql.query(sqlQuery, (err, result) => {
           if (err) {
