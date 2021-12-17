@@ -21,7 +21,7 @@ export default function Navbar() {
 
     useEffect(() => {
        dispatch(getUser(userId));
-      }, []);
+      }, [dispatch,userId]);
 
     const userData = useSelector((state) => state.userReducer)
 
