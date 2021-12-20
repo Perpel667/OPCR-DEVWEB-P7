@@ -9,6 +9,8 @@
 .postWrapper {
   font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
   padding: 10px;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .postTop {
@@ -54,13 +56,14 @@
   flex-direction: column;
 }
 .postCenter {
-  margin: 20px 0;
+  margin: 10px 0;
+  text-align: left;
 }
 .postText {
   font-size: 15px;
 }
 .postImg {
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
   max-height: 500px;
   object-fit: contain;
@@ -81,7 +84,9 @@
   margin-right: 5px;
   cursor: pointer;
 }
-
+.likeIconLiked > * {
+  fill: #c50000;
+}
 .postLikeCounter {
   font-size: 15px;
 }
@@ -89,6 +94,10 @@
 .postCommentText {
   cursor: pointer;
   font-size: 15px;
+  color: gray;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .icon-spin {
