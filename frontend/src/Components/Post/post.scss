@@ -84,8 +84,14 @@
   margin-right: 5px;
   cursor: pointer;
 }
-.likeIconLiked > * {
-  fill: #c50000;
+.likeIconLiked {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+
+  & > * {
+    fill: #c50000;
+  }
 }
 .postLikeCounter {
   font-size: 15px;
