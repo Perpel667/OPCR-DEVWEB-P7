@@ -18,6 +18,8 @@ router.delete("/:id",requireAuth,PostController.deletePost);
 // like or unlike a post
 router.patch("/:id/likes",Auth,PostController.likeUnlikePost);
 //get how many likes a post have
-router.get("/:id/likes",Auth,PostController.countLikes);
+router.get("/likes",Auth,PostController.getLikes);
+//get how many likes a post have
+router.get("/:id/checkLiked",Auth,PostController.checkLiked);
 
 module.exports = router;

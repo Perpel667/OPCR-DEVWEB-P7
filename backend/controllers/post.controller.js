@@ -62,7 +62,7 @@ exports.getAllPosts = (req, res) => {
             res.status(400).json({error: err});
             return;
           }
-           console.log(result); 
+           /* console.log(result);  */
           res.status(200).json(result);
         });
       };
@@ -185,9 +185,22 @@ const sqlSelectComment = `SELECT * FROM likes WHERE user_id = ${userid} AND post
 
 // get how many likes a post have
 
-exports.countLikes = (req, res) => {
+exports.getLikes = (req, res) => {
   const postId = req.params.id;
-  const sqlTotalLikes = `SELECT COUNT(*) AS TotalLikes FROM likes WHERE post_id = ${postId}`
+  const sqlTotalLikes = `SELECT likes.post_id as 'LikePostId', likes.user_id as 'likeUserId' FROM likes;`
+  sql.query(sqlTotalLikes, (err, result)=>{
+    if (err) {
+      console.log(err);
+      res.status(404).json({ err:err})
+    }
+    res.status(200).json(result)
+  })
+}
+// check if user already liked a post
+exports.checkLiked = (req, res) => {
+  getUserId(req,res);
+  const postId = req.params.id;
+  const sqlTotalLikes = `SELECT * FROM likes WHERE user_id = ${userid} AND post_id = ${postId}`
   sql.query(sqlTotalLikes, (err, result)=>{
     if (err) {
       console.log(err);
