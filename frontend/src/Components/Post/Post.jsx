@@ -42,7 +42,8 @@ export default function Post({post,userData}) {
                     </div>
                     <div className="postCenter">
                     <span className="postText">{post?.message}</span>
-                    <img src={`http://localhost:5000/api/images/posts/${post.image_url}`} alt="" className="postImg"/>
+                    {post.image_url && <img src={`http://localhost:5000/api/images/posts/${post.image_url}`} alt="" className="postImg"/>}
+                    
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
