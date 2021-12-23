@@ -8,12 +8,13 @@
 
 .postWrapper {
   font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
-  padding: 10px;
+  padding: 10px 0px;
   background-color: white;
   border-radius: 10px;
 }
 
 .postTop {
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,6 +61,7 @@
   text-align: left;
 }
 .postText {
+  padding: 0 10px;
   font-size: 15px;
 }
 .postImg {
@@ -70,6 +72,8 @@
 }
 
 .postBottom {
+  padding: 0 10px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -78,17 +82,31 @@
   display: flex;
   align-items: center;
 }
+.like-container {
+  display: flex;
+  align-items: center;
+}
+.likeCount {
+  color: gray;
+}
 .likeIcon {
   width: 24px;
   height: 24px;
   margin-right: 5px;
   cursor: pointer;
 }
+.heart {
+  display: flex;
+  transition: all 150ms ease-in-out;
+  &:active {
+    transform: scale(1.1);
+  }
+}
 .likeIconLiked {
   width: 24px;
   height: 24px;
   margin-right: 5px;
-
+  cursor: pointer;
   & > * {
     fill: #c50000;
   }
