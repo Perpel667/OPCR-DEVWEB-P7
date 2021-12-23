@@ -37,7 +37,8 @@ export default function Post({post,userData}) {
                             
                         </div>
                         <div className="postTopRight">
-                        <FiMoreVertical />
+                            {post.user_id === userData.id && <FiMoreVertical />}
+                        
                     </div>
                     </div>
                     <div className="postCenter">
