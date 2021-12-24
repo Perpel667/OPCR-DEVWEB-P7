@@ -55,6 +55,10 @@ export default function Post({post,userData}) {
                         <span className="postCommentText">{post.Commentaires} commentaires</span>
                     </div>
                 </div>
+                <hr className="commentHr"/>
+                <div className="commentSection">
+                <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="commentProfilePicture"/> <input className="commentInput" type="text" placeholder="Ecrivez un commentaire..."/>
+                </div>
                 </div>
             )}
         </div>

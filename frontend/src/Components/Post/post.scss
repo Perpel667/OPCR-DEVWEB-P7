@@ -123,6 +123,40 @@
     text-decoration: underline;
   }
 }
+.commentSection {
+  margin-top: 5px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+input.commentInput {
+  width: 90%;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #f1f0f0;
+  &:focus {
+    outline: none;
+    border: 1px solid #7c7c7c;
+  }
+  &:hover {
+    background-color: #e9e8e8;
+  }
+}
+hr.commentHr {
+  width: 95%;
+  border: none;
+  background-color: #d5d4d4;
+  height: 1px;
+}
+.commentProfilePicture {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eaeaea;
+}
 
 .icon-spin {
   -webkit-animation: icon-spin 2s infinite linear;
