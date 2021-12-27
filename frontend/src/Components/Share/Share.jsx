@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from "axios";
-import { GoFileMedia } from "react-icons/go";
+import { FcAddImage } from "react-icons/fc";
 import './share.scss'
 
 
@@ -59,10 +59,10 @@ export default function Share() {
                 <div className="shareBottom">
                     <div className="shareOptions">
                         <div className="shareOption">
-                        <GoFileMedia className="shareIcon"/>
                             <input type="file" name="image" id="image" style={{display: "none"}} onChange={HandlePostPicture}/>
-                            <label htmlFor="image" >
-                                <span className="shareOptionText">Ajouter une photo</span>
+                            <label id="imageLabel" htmlFor="image" >
+                                <FcAddImage className="shareIcon"/>
+                                <span className="shareOptionText"> Ajouter une photo</span>
                             </label> 
                         </div>
                     </div>
