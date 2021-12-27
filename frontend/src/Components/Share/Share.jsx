@@ -28,20 +28,6 @@ export default function Share() {
 
     // New Post Handle
     const handleNewPost = (e) =>{
-        if(picture === null){
-            axios({
-                method: "POST",
-                url: `http://localhost:5000/api/post/`,
-                data: message,
-                withCredentials: true,
-              })
-              .then(response =>{
-                  console.log(response);
-              })
-              .catch(error =>{
-                  console.log(error);
-              })
-        }
         const data = new FormData();
         data.append("message", message);
         data.append("image_url", picture);
@@ -74,7 +60,6 @@ export default function Share() {
                     <div className="shareOptions">
                         <div className="shareOption">
                         <GoFileMedia className="shareIcon"/>
-                            
                             <input type="file" name="image" id="image" style={{display: "none"}} onChange={HandlePostPicture}/>
                             <label htmlFor="image" >
                                 <span className="shareOptionText">Ajouter une photo</span>
