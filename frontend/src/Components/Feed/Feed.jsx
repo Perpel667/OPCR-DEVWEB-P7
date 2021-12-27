@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../actions/post.actions';
-import { getLikes } from '../../actions/likes.actions';
 import Post from '../Post/Post';
 import Share from '../Share/Share';
 import './feed.scss';
@@ -16,8 +15,7 @@ export default function Feed() {
 
     useEffect(()=>{
         if(loadPost){
-            dispatch(getPosts());
-            dispatch(getLikes()); 
+            dispatch(getPosts()); 
             setLoadPost(false)
         }
     },[loadPost, dispatch])
