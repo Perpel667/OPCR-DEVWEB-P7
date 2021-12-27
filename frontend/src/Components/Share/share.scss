@@ -24,7 +24,7 @@
 .shareInput {
   color: black;
   border: none;
-  width: 80%;
+  width: 87%;
   font-size: 16px;
   padding: 10px;
   border-radius: 8px;
@@ -40,10 +40,12 @@
 
 .shareHr {
   margin: 20px;
-  width: 95%;
   border: none;
   background-color: #d5d4d4;
   height: 1px;
+  @media screen and (min-width: 425px) {
+    width: 95%;
+  }
 }
 
 .shareBottom {
@@ -61,12 +63,16 @@
   display: flex;
   align-items: center;
   margin-right: 15px;
+  padding: 7px;
+  border-radius: 5px;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(190, 190, 190, 0.26);
+  }
 }
 
 .shareIcon {
-  color: tomato;
-  font-size: 18px;
+  font-size: 22px;
   margin-right: 3px;
 }
 
@@ -74,6 +80,9 @@
   color: black;
   font-size: 14px;
   font-weight: 500;
+  @media screen and (max-width: 425px) {
+    display: none;
+  }
 }
 
 .shareButton {
@@ -85,4 +94,11 @@
   cursor: pointer;
   background-color: #1877f2;
   color: white;
+  &:hover {
+    background-color: #0d6ae4;
+  }
+}
+
+#imageLabel {
+  display: flex;
 }
