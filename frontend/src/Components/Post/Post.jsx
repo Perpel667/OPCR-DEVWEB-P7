@@ -3,7 +3,8 @@ import {useSelector} from 'react-redux';
 import Modal from 'react-modal';
 import { FaCircleNotch } from "react-icons/fa";
 import { FiMoreVertical } from "react-icons/fi";
-import { FaTrashAlt,FaPencilAlt } from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
+import DeletePostButton from './DeletePostButton'
 /* import axios from "axios"; */
 
 import './post.scss';
@@ -28,10 +29,8 @@ export default function Post({post,userData}) {
 
 
 
-
-    useEffect(() =>{ post && setIsLoading(false)
-
-    },[post])
+    useEffect(() =>{ post && setIsLoading(false)},[post])
+    
     return (
         <div className="card-container" key={post.id}>
             {isLoading ? (
@@ -42,7 +41,7 @@ export default function Post({post,userData}) {
                     {(postOptions && post.user_id === userData.id) &&  
                     <div className="postOptions">
                         <span className="postOptionsUpdate"><FaPencilAlt /></span>
-                        <span className="postOptionsDelete"><FaTrashAlt /></span>
+                        <span className="postOptionsDelete"><DeletePostButton post={post}/></span>
                     </div>
                     }
                         <div className="postTopLeft">
