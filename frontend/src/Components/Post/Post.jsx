@@ -1,10 +1,12 @@
 import {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Modal from 'react-modal';
 import { FaCircleNotch } from "react-icons/fa";
 import { FiMoreVertical } from "react-icons/fi";
 import { FaPencilAlt } from "react-icons/fa";
+import { FcAddImage } from "react-icons/fc";
 import DeletePostButton from './DeletePostButton'
+import { getPosts, updatePost } from "../../actions/post.actions"
 /* import axios from "axios"; */
 
 import './post.scss';
@@ -18,19 +20,61 @@ moment.locale('fr');
 
 export default function Post({post,userData}) {
 
-
+    const dispatch = useDispatch();
     const [isLoading,setIsLoading] = useState(true);
+    // options du post ( modification et suppression) //
     const [postOptions,setPostOptions] = useState(false);
+    // modification du post //
+    const [isUpdated,setIsUpdated] = useState(false);
+    const [pictureUpdated,setPictureUpdated] = useState (null);
+    const [textUpdate,setTextUpdate] = useState(null);
 
+    // set post picture handle
+    const HandlePictureUpdated = (e) =>{
+        function setPictureAsync() {
+            return new Promise(resolve => {
+                setPictureUpdated(e.target.files[0])
+                resolve(pictureUpdated);
+            });
+          }
+          
+          async function getPictureAsync() {
+             await setPictureAsync();
+          }
+          getPictureAsync();
+    }
+
+    const updateItem = async () => {
+        const data = new FormData();
+        data.append("message", textUpdate);
+        data.append("image_url", pictureUpdated);
+        if(textUpdate){
+            await dispatch(updatePost(post.id,data)).then(() => dispatch(getPosts()));
+             setIsUpdated(false);
+        }
+    };
+
+    
+
+    // permet de fermer et ouvrir les menus sur le même bouton //
     function toggle() {
         setPostOptions(wasOpened => !wasOpened);
       }
+    function cancelUpdate() {
+        setIsUpdated(wasOpened => !wasOpened);
+      }
+    
+    function closeOnUpdate(){
+        setIsUpdated(true);
+        setPostOptions(false);
+    }
+
     const postLiked = useSelector((state) => state.likesReducer);
 
 
 
     useEffect(() =>{ post && setIsLoading(false)},[post])
-    
+
     return (
         <div className="card-container" key={post.id}>
             {isLoading ? (
@@ -38,9 +82,10 @@ export default function Post({post,userData}) {
             ): (
                 <div className="postWrapper">
                     <div className="postTop">
+                        {/* si le state postOption est sur true et que l'id de l'utilisateur est le même que celui qui a poster alors montre moi les options de l'article */}
                     {(postOptions && post.user_id === userData.id) &&  
                     <div className="postOptions">
-                        <span className="postOptionsUpdate"><FaPencilAlt /></span>
+                        <span className="postOptionsUpdate"><FaPencilAlt onClick={closeOnUpdate} /></span>
                         <span className="postOptionsDelete"><DeletePostButton post={post}/></span>
                     </div>
                     }
@@ -53,11 +98,31 @@ export default function Post({post,userData}) {
                             
                         </div>
                         <div className="postTopRight">
+                            {/* si le state postOption est sur true et que l'id de l'utilisateur est le même que
+                             celui qui a poster alors montre moi le bouton pour acceder aux options de l'article */}
                             {post.user_id === userData.id && <FiMoreVertical onClick={toggle}/>}
                     </div>
                     </div>
                     <div className="postCenter">
-                    <span className="postText">{post?.message}</span>
+                        {!isUpdated && <span className="postText">{post?.message}</span> }
+                        {isUpdated && 
+                        <div className="update-post">
+                            <textarea className="update-post-txt"
+                            defaultValue={post.message}
+                            onChange={(e) => setTextUpdate(e.target.value)}
+                            />
+                            <div className="update-post-bottom">
+                            <input type="file" name="image_url" id="image_url" style={{display: "none"}} onChange={HandlePictureUpdated} />
+                            <label id="imageLabel" htmlFor="image_url" >
+                                <FcAddImage className="shareIcon"/>
+                            </label> 
+                                <div className="btn-container">
+                                    <button className="update-post-btn"onClick={updateItem}>Valider la modification</button>
+                                    <button className="update-post-btn cancel" onClick={cancelUpdate}>Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                        }
                     {post.image_url && <img src={`http://localhost:5000/api/images/posts/${post.image_url}`} alt="" className="postImg"/>}
                     
                 </div>
