@@ -197,6 +197,13 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  flex-direction: column;
+}
+.createComment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 input.commentInput {
   width: 90%;
@@ -224,6 +231,7 @@ hr.commentHr {
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid #eaeaea;
+  margin-right: 5px;
 }
 
 .icon-spin {
