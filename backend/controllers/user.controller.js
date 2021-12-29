@@ -3,6 +3,20 @@ const bcrypt = require('bcrypt');
 require('dotenv').config({path:'./config/.env'})
 
 // Get one specific user from the database
+ exports.getAllUsers = (req, res) => {
+   // Getting id from params
+   const sqlQuery = `SELECT users.id,users.name,users.firstname,users.image FROM users`
+   sql.query(sqlQuery, (err, data) => {
+     if (data.length === 0) {
+         res.status(404).send({
+           message: `Aucun utilisateurs trouvé.`
+         });
+     }
+     delete data.password;
+      res.status(200).json(data);
+   });
+ };
+// Get one specific user from the database
  exports.findOne = (req, res) => {
    // Getting id from params
    const sqlQuery = `SELECT * FROM users WHERE id = ?`

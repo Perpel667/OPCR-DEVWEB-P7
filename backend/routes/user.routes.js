@@ -5,6 +5,8 @@ const {requireUserAuth} = require("../middlewares/auth.middleware");
 const upload = require("../middlewares/multer.config")
 
 // Get a specific user
+router.get("/",Auth, userController.getAllUsers);
+// Get a specific user
 router.get("/:id",Auth, userController.findOne);
 // modify a specific user
 router.put("/:id",requireUserAuth, userController.update);
