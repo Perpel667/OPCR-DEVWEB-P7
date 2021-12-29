@@ -1,22 +1,20 @@
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import Modal from 'react-modal';
 import { FaCircleNotch } from "react-icons/fa";
 import { FiMoreVertical } from "react-icons/fi";
 import { FaPencilAlt } from "react-icons/fa";
 import { FcAddImage } from "react-icons/fc";
 import DeletePostButton from './DeletePostButton'
 import { getPosts, updatePost } from "../../actions/post.actions"
-/* import axios from "axios"; */
 
 import './post.scss';
 import moment from 'moment';
 import 'moment/locale/fr';
 import LikeButton from './LikeButton';
+import CardComments from './CardComments';
 moment.locale('fr');
 
 
-  Modal.setAppElement('#root');
 
 export default function Post({post,userData}) {
 
@@ -28,6 +26,8 @@ export default function Post({post,userData}) {
     const [isUpdated,setIsUpdated] = useState(false);
     const [pictureUpdated,setPictureUpdated] = useState (null);
     const [textUpdate,setTextUpdate] = useState(null);
+    // commentaires //
+    const [showComments,setShowComments] = useState(false);
 
     // set post picture handle
     const HandlePictureUpdated = (e) =>{
@@ -132,12 +132,16 @@ export default function Post({post,userData}) {
                         <span className="postLikeCounter"></span>
                     </div>
                     <div className="postBottomright">
-                        <span className="postCommentText">{post.Commentaires} commentaires</span>
+                        <span className="postCommentText" onClick={() => setShowComments(!showComments)}>{post.Commentaires} commentaires</span>
                     </div>
                 </div>
                 <hr className="commentHr"/>
                 <div className="commentSection">
-                <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="commentProfilePicture"/> <input className="commentInput" type="text" placeholder="Ecrivez un commentaire..."/>
+                    <div className="createComment">
+                        <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="commentProfilePicture"/> 
+                        <input className="commentInput" type="text" placeholder="Ecrivez un commentaire..."/>
+                    </div>
+                {showComments && <CardComments post={post}/>}
                 </div>
                 </div>
             )}
