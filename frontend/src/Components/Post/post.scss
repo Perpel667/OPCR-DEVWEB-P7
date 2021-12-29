@@ -11,6 +11,7 @@
   padding: 10px 0px;
   background-color: white;
   border-radius: 10px;
+  max-width: 80vw;
 }
 
 .postTop {
@@ -131,6 +132,9 @@
 .postText {
   padding: 0 10px;
   font-size: 15px;
+  overflow-wrap: break-word;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 .postImg {
   margin-top: 10px;
@@ -218,6 +222,15 @@ input.commentInput {
   &:hover {
     background-color: #e9e8e8;
   }
+}
+input.comment-btn {
+  border: none;
+  padding: 8px;
+  margin-left: 5px;
+  background-color: #1877f2;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
 }
 hr.commentHr {
   width: 95%;
