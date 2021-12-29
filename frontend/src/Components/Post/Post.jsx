@@ -6,6 +6,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { FcAddImage } from "react-icons/fc";
 import DeletePostButton from './DeletePostButton'
 import { getPosts, updatePost } from "../../actions/post.actions"
+import { addComment } from "../../actions/comments.actions"
 
 import './post.scss';
 import moment from 'moment';
@@ -28,6 +29,18 @@ export default function Post({post,userData}) {
     const [textUpdate,setTextUpdate] = useState(null);
     // commentaires //
     const [showComments,setShowComments] = useState(false);
+    const [comment,setComment] = useState("");
+
+    // post new comment 
+    const handleComment = (e) => {
+        e.preventDefault();
+
+        if(comment){
+           dispatch(addComment(post.id,comment))
+           .then(()=> dispatch(getPosts()))
+           .then(()=> setComment(""))
+        }
+    }
 
     // set post picture handle
     const HandlePictureUpdated = (e) =>{
@@ -137,10 +150,11 @@ export default function Post({post,userData}) {
                 </div>
                 <hr className="commentHr"/>
                 <div className="commentSection">
-                    <div className="createComment">
+                    <form className="createComment" onSubmit={handleComment}>
                         <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="commentProfilePicture"/> 
-                        <input className="commentInput" type="text" placeholder="Ecrivez un commentaire..."/>
-                    </div>
+                        <input className="commentInput" type="text" name="comment"  onChange={(e)=> setComment(e.target.value)} placeholder="Ecrivez un commentaire..."/>
+                        <input type="submit" value="envoyer" className="comment-btn"/>
+                    </form>
                 {showComments && <CardComments post={post}/>}
                 </div>
                 </div>
