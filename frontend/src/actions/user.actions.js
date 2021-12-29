@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const GET_USER = "GET_USER";
-/* export const GET_UID = "GET_UID"; */
+
 
 export const getUser = (uid) => {
     return (dispatch) => {
@@ -15,8 +15,3 @@ export const getUser = (uid) => {
         .catch((err) => console.log(err));
     };
 };
-/* export const getUserId = (userId) => {
-    return (dispatch) => {
-            dispatch({ type: GET_UID, payload: userId });
-    };
-}; */
