@@ -39,6 +39,7 @@ export default function Post({post,userData}) {
            dispatch(addComment(post.id,comment))
            .then(()=> dispatch(getPosts()))
            .then(()=> setComment(""))
+           .then(() => setShowComments(!showComments))
         }
     }
 
