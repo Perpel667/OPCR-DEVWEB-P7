@@ -117,7 +117,7 @@ export default function Post({post,userData}) {
                     </div>
                     </div>
                     <div className="postCenter">
-                        {!isUpdated && <span className="postText">{post?.message}</span> }
+                        {!isUpdated && <div className="postText">{post?.message}</div> }
                         {isUpdated && 
                         <div className="update-post">
                             <textarea className="update-post-txt"

@@ -11,7 +11,7 @@
   padding: 10px 0px;
   background-color: white;
   border-radius: 10px;
-  max-width: 80vw;
+  max-width: 634px;
 }
 
 .postTop {
@@ -132,9 +132,7 @@
 .postText {
   padding: 0 10px;
   font-size: 15px;
-  overflow-wrap: break-word;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  word-break: break-all;
 }
 .postImg {
   margin-top: 10px;
