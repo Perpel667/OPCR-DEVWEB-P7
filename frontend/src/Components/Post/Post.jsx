@@ -83,6 +83,8 @@ export default function Post({post,userData}) {
         setPostOptions(false);
     }
 
+    
+
     const postLiked = useSelector((state) => state.likesReducer);
 
 
@@ -156,7 +158,7 @@ export default function Post({post,userData}) {
                         <input className="commentInput" type="text" name="comment"  onChange={(e)=> setComment(e.target.value)} placeholder="Ecrivez un commentaire..."/>
                         <input type="submit" value="envoyer" className="comment-btn"/>
                     </form>
-                {showComments && <CardComments post={post}/>}
+                {showComments && <CardComments post={post} />}
                 </div>
                 </div>
             )}
