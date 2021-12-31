@@ -33,7 +33,7 @@ export const addComment = (postId,message) =>{
         .catch((err) => console.log(err))
     }
 }
-export const editComment = (commentId,message) =>{
+export const editComment = (postId,commentId,message) =>{
     return(dispatch) =>{
         return axios({
             method:"PUT",
@@ -42,7 +42,7 @@ export const editComment = (commentId,message) =>{
             withCredentials: true
         })
         .then((res) =>{
-            dispatch({type:"EDIT_COMMENT", payload: message})
+            dispatch({type:"EDIT_COMMENT", payload: {postId,commentId,message}})
         })
         .catch((err) => console.log(err))
     }
