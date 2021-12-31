@@ -4,6 +4,7 @@ import axios from "axios";
 
 export const GET_COMMENTS = "GET_COMMENTS";
 export const ADD_COMMENT = "ADD_COMMENT";
+export const EDIT_COMMENT = "EDIT_COMMENT";
 
 
 export const getComments = (postId) =>{
@@ -28,6 +29,20 @@ export const addComment = (postId,message) =>{
         })
         .then((res) =>{
             dispatch({type:"ADD_COMMENT", payload: message})
+        })
+        .catch((err) => console.log(err))
+    }
+}
+export const editComment = (commentId,message) =>{
+    return(dispatch) =>{
+        return axios({
+            method:"PUT",
+            url:`http://localhost:5000/api/comment/${commentId}`,
+            data:{message:message},
+            withCredentials: true
+        })
+        .then((res) =>{
+            dispatch({type:"EDIT_COMMENT", payload: message})
         })
         .catch((err) => console.log(err))
     }
