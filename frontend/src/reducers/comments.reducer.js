@@ -8,7 +8,18 @@ export default function commentReducer(state = initialState, action) {
         case GET_COMMENTS:
             return action.payload;
         case EDIT_COMMENT : 
-            return action.payload;
+            return state.map((comment)=>{
+                if(comment.id === action.payload.commentId){
+                  return{
+                    ...comment,
+                    message: action.payload.message
+                }  
+                } else {
+                    return{
+                        ...comment
+                    }
+                }
+            })
         default:
             return state;
         
