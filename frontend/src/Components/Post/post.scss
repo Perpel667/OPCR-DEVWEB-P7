@@ -229,6 +229,9 @@ input.comment-btn {
   border-radius: 5px;
   color: white;
   font-weight: bold;
+  &:hover {
+    background-color: #0d6ae4;
+  }
 }
 hr.commentHr {
   width: 95%;
