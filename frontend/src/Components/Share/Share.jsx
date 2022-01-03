@@ -53,7 +53,7 @@ export default function Share() {
             <form className="shareWrapper" onSubmit={handleNewPost}>
                 <div className="shareTop">
                      <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="shareProfilePicture"/>
-                    <input placeholder="Exprimez-vous" className="shareInput" onChange={(e) => setMessage(e.target.value)} value={message} />
+                    <input aria-label="Ecrire une publication" placeholder="Exprimez-vous" className="shareInput" onChange={(e) => setMessage(e.target.value)} value={message} />
                 </div>
                 <hr className="shareHr"/>
                 <div className="shareBottom">
