@@ -24,13 +24,13 @@ export default function Feed() {
         <div className="Feed">
             <div className="feedWrapper">
                 <Share />
-                <ul className="postsWrapper">
+                <div className="postsWrapper">
                     {(posts[0]) && 
                     posts.map((post)=>{
                         return <Post post={post} userData={userData}  key={post.id} />
                     })
                     }
-                </ul>
+                </div>
             </div>
         </div>
     )
