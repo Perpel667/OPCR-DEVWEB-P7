@@ -49,24 +49,32 @@ exports.updateComment =(req, res,next) => {
      getUserId(req,res);
    // get postId from params
     const commentId = req.params.id;
-
-    sql.query(`SELECT * FROM comments WHERE id = ${commentId}`,(err,data) =>{
+    sql.query(`SELECT * FROM users WHERE id=${userid}`,(err,userData) =>{
         if(err){
             console.log(err);
-        }
-        if(data[0].user_id == userid){
-           const sqlUpdateComment = `UPDATE comments SET message='${req.body.message}' WHERE id = ${commentId} AND user_id = ${userid}`
-           sql.query(sqlUpdateComment,(err,result)=>{
-               if (err) {
-                   res.status(404).json({ err: err})
-               } else {
-                   res.status(201).json(result)
-               }
-           })
+            res.status(404).json({ err: err})
         } else {
-            res.status(403).json({message:"vous n'etes pas l'auteur de ce commentaire."})
+            sql.query(`SELECT * FROM comments WHERE id = ${commentId}`,(err,data) =>{
+                if(err){
+                    console.log(err);
+                }
+                if((data[0].user_id == userid) || userData[0].admin == 1){
+                   const sqlUpdateComment = `UPDATE comments SET message='${req.body.message}' WHERE id = ${commentId} AND user_id = ${userid}`
+                   sql.query(sqlUpdateComment,(err,result)=>{
+                       if (err) {
+                           res.status(404).json({ err: err})
+                       } else {
+                           res.status(201).json(result)
+                       }
+                   })
+                } else {
+                    res.status(403).json({message:"vous n'etes pas l'auteur de ce commentaire."})
+                }
+            })
         }
     })
+
+   
 }
 
 exports.deleteComment =(req, res,next) => {
@@ -75,21 +83,28 @@ exports.deleteComment =(req, res,next) => {
   // get postId from params
    const commentId = req.params.id;
 
-   sql.query(`SELECT * FROM comments WHERE id = ${commentId}`,(err,data) =>{
-       if(err){
-           console.log(err);
-       }
-       if(data[0].user_id == userid){
-          const sqlDeleteComment = `DELETE FROM comments WHERE id = ${commentId}`
-          sql.query(sqlDeleteComment,(err,result)=>{
-              if (err) {
-                  res.status(404).json({ err: err})
-              } else {
-                  res.status(201).json(result)
-              }
-          })
-       } else {
-           res.status(403).json({message:"vous n'etes pas l'auteur de ce commentaire."})
-       }
-   })
-}
+   sql.query(`SELECT * FROM users WHERE id=${userid}`,(err,userData) =>{
+    if(err){
+        console.log(err);
+        res.status(404).json({ err: err})
+    } else {
+        sql.query(`SELECT * FROM comments WHERE id = ${commentId}`,(err,data) =>{
+            if(err){
+                console.log(err);
+            }
+            if((data[0].user_id == userid) || userData[0].admin == 1){
+               const sqlDeleteComment = `DELETE FROM comments WHERE id = ${commentId}`
+               sql.query(sqlDeleteComment,(err,result)=>{
+                   if (err) {
+                       res.status(404).json({ err: err})
+                   } else {
+                       res.status(201).json(result)
+                   }
+               })
+            } else {
+                res.status(403).json({message:"vous n'etes pas l'auteur de ce commentaire."})
+            }
+        })
+    }
+})
+};
