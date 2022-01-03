@@ -39,7 +39,7 @@ export default function Post({post,userData}) {
            dispatch(addComment(post.id,comment))
            .then(()=> dispatch(getPosts()))
            .then(()=> setComment(""))
-           .then(() => setShowComments(!showComments))
+           .then(() => setShowComments(true))
         }
     }
 
@@ -155,7 +155,7 @@ export default function Post({post,userData}) {
                 <div className="commentSection">
                     <form className="createComment" onSubmit={handleComment}>
                         <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="commentProfilePicture"/> 
-                        <input className="commentInput" type="text" name="comment"  onChange={(e)=> setComment(e.target.value)} placeholder="Ecrivez un commentaire..."/>
+                        <input className="commentInput" type="text" name="comment" onChange={(e)=> setComment(e.target.value)} placeholder="Ecrivez un commentaire..."/>
                         <input type="submit" value="envoyer" className="comment-btn"/>
                     </form>
                 {showComments && <CardComments post={post} />}
