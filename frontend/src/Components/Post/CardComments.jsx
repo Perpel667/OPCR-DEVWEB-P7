@@ -1,6 +1,7 @@
 import { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editComment, getComments, deleteComment } from '../../actions/comments.actions';
+import { getPosts } from "../../actions/post.actions"
 import { getUsers } from '../../actions/users.actions';
 import { FiMoreVertical } from "react-icons/fi";
 import { FaTrashAlt,FaPencilAlt } from "react-icons/fa";
@@ -43,7 +44,7 @@ export default function CardComments({post}) {
            }
        }
 
-       const handleDeleteComment = () => dispatch(deleteComment(commentId));
+       const handleDeleteComment = () => {dispatch(deleteComment(commentId)).then(()=> dispatch(getPosts()))};
 
        const storeCommentIdAndSetEdit = (commentId) => {
            setEdit(!edit);
