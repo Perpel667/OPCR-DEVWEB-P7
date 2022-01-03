@@ -106,7 +106,7 @@ export default function Post({post,userData}) {
                     </div>
                     }
                         <div className="postTopLeft">
-                            <img src={`http://localhost:5000/api/${post.profilePicture}`} alt="" className="postProfilePicture"/>
+                            <img src={`http://localhost:5000/api/${post.profilePicture}`} alt="utilisateur qui a poster" className="postProfilePicture"/>
                             <div className="postTopUserAndDate">
                                <span className="postUsername">{post.name} {post.firstname}</span> 
                                <span className="postDate">{moment(post.date).fromNow()}</span>
@@ -154,8 +154,8 @@ export default function Post({post,userData}) {
                 <hr className="commentHr"/>
                 <div className="commentSection">
                     <form className="createComment" onSubmit={handleComment}>
-                        <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="commentProfilePicture"/> 
-                        <input className="commentInput" type="text" name="comment" onChange={(e)=> setComment(e.target.value)} placeholder="Ecrivez un commentaire..."/>
+                        <img src={`http://localhost:5000/api/${userData.image}`} alt="utilisateur" className="commentProfilePicture"/> 
+                        <input aria-label="Ecrire un commentaire" className="commentInput" type="text" name="comment" onChange={(e)=> setComment(e.target.value)} placeholder="Ecrivez un commentaire..."/>
                         <input type="submit" value="envoyer" className="comment-btn"/>
                     </form>
                 {showComments && <CardComments post={post} />}
