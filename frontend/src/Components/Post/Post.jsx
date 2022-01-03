@@ -99,7 +99,7 @@ export default function Post({post,userData}) {
                 <div className="postWrapper">
                     <div className="postTop">
                         {/* si le state postOption est sur true et que l'id de l'utilisateur est le même que celui qui a poster alors montre moi les options de l'article */}
-                    {(postOptions && post.user_id === userData.id) &&  
+                    {(postOptions && (post.user_id === userData.id || userData.admin === 1)) &&  
                     <div className="postOptions">
                         <span className="postOptionsUpdate"><FaPencilAlt onClick={closeOnUpdate} /></span>
                         <span className="postOptionsDelete"><DeletePostButton post={post}/></span>
@@ -116,10 +116,10 @@ export default function Post({post,userData}) {
                         <div className="postTopRight">
                             {/* si le state postOption est sur true et que l'id de l'utilisateur est le même que
                              celui qui a poster alors montre moi le bouton pour acceder aux options de l'article */}
-                            {post.user_id === userData.id && <FiMoreVertical onClick={toggle}/>}
+                            {(post.user_id === userData.id || userData.admin === 1) && <FiMoreVertical onClick={toggle}/>}
                     </div>
                     </div>
-                    <div className="postCenter">
+                    <div className="postCenter"> 
                         {!isUpdated && <div className="postText">{post?.message}</div> }
                         {isUpdated && 
                         <div className="update-post">
