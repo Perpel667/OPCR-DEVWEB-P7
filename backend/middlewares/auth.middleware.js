@@ -67,11 +67,18 @@ module.exports.Auth = (req, res,next) => {
                    console.log(err);
                    res.status(400).json({err: err})
                } else {
-                   if(data[0].user_id == decodedToken.id){
-                       next();
-                   } else {
-                       res.status(403).json({message:"Vous n'êtes pas autoriser a faire cette action."})
-                   }
+                   sql.query(`SELECT * FROM users WHERE id=${decodedToken.id}`,(err, userData)=>{
+                    if(err){
+                        console.log(err);
+                        res.status(404).json({err:err})
+                    } if ((userData[0].admin == 1) || (decodedToken.id == data[0].user_id)) {
+                        next();
+                    }else{
+                        res.status(403).send({
+                            message: `Vous n'êtes pas autoriser a faire cette action.`
+                          });
+                       }
+                   })
                }
            })
        }
