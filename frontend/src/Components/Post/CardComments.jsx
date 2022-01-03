@@ -1,6 +1,6 @@
 import { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editComment, getComments } from '../../actions/comments.actions';
+import { editComment, getComments, deleteComment } from '../../actions/comments.actions';
 import { getUsers } from '../../actions/users.actions';
 import { FiMoreVertical } from "react-icons/fi";
 import { FaTrashAlt,FaPencilAlt } from "react-icons/fa";
@@ -42,6 +42,8 @@ export default function CardComments({post}) {
                setCommentUpdated(!commentUpdated);
            }
        }
+
+       const handleDeleteComment = () => dispatch(deleteComment(commentId));
 
        const storeCommentIdAndSetEdit = (commentId) => {
            setEdit(!edit);
@@ -88,7 +90,13 @@ export default function CardComments({post}) {
                    <div className="edit-comment-options">
                         <label className="edit-comment-label" htmlFor="text" onClick={()=> setEdit(!edit)}><FaPencilAlt onClick={(e) => setCommentUpdated(!commentUpdated)} /></label>
                         <br />
-                        <label className="delete-comment-label" htmlFor="text" onClick={()=> setEdit(!edit)}><FaTrashAlt /></label>
+                        <label className="delete-comment-label" htmlFor="text" onClick={()=> setEdit(!edit)}>
+                            <FaTrashAlt 
+                        onClick={(e)=> {if(window.confirm("Voulez vous vraiment supprimer ce commentaire?"))
+                        {
+                            handleDeleteComment()
+                        }
+                        }}/></label>
                    </div>
                    }
                        </div>
@@ -102,5 +110,3 @@ export default function CardComments({post}) {
        </div>
     )
 }
-
-/* TODO : "Mettre le form de modification de commentaire dans un composant pour hériter du comment.id et ne pas avoir d'erreur de map" */

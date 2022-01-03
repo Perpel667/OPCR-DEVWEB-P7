@@ -1,4 +1,4 @@
-import { GET_COMMENTS,EDIT_COMMENT } from "../actions/comments.actions";
+import { GET_COMMENTS,EDIT_COMMENT, DELETE_COMMENT } from "../actions/comments.actions";
 
 
 const initialState = {};
@@ -13,6 +13,18 @@ export default function commentReducer(state = initialState, action) {
                   return{
                     ...comment,
                     message: action.payload.message
+                }  
+                } else {
+                    return{
+                        ...comment
+                    }
+                }
+            })
+        case DELETE_COMMENT : 
+            return state.map((comment)=>{
+                if(comment.id === action.payload.commentId){
+                  return{
+                    ...comment
                 }  
                 } else {
                     return{

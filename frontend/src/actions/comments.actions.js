@@ -5,6 +5,8 @@ import axios from "axios";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
+
 
 
 export const getComments = (postId) =>{
@@ -43,6 +45,19 @@ export const editComment = (postId,commentId,message) =>{
         })
         .then((res) =>{
             dispatch({type:"EDIT_COMMENT", payload: {postId,commentId,message}})
+        })
+        .catch((err) => console.log(err))
+    }
+}
+export const deleteComment = (commentId) =>{
+    return(dispatch) =>{
+        return axios({
+            method:"DELETE",
+            url:`http://localhost:5000/api/comment/${commentId}`,
+            withCredentials: true
+        })
+        .then((res) =>{
+            dispatch({type:"DELETE_COMMENT", payload: commentId })
         })
         .catch((err) => console.log(err))
     }
