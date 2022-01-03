@@ -76,7 +76,7 @@ export default function CardComments({post}) {
                         })}
                                </div>
                                <p className="comment-text">{comment.message}</p>
-                                {(commentUpdated && comment.user_id === userData.id) === true && 
+                                {(commentUpdated && userData.admin === 1 || (comment.user_id === userData.id)) === true && 
                                 <form action="" onSubmit={handleEditComment} className="edit-comment-form">
                                      <textarea className="edit-comment-input" type="text" name="comment" defaultValue={comment.message} onChange={(e)=> setText(e.target.value)} />
                                      <br />
@@ -86,8 +86,8 @@ export default function CardComments({post}) {
                        </div>
                    </div>
                    <div className="comment-option-toggle">
-                   {(comment.user_id === userData.id && edit === false) && <FiMoreVertical onClick={(e) => storeCommentIdAndSetEdit(comment.id)}/>}
-                   {(comment.user_id === userData.id && edit === true) && 
+                   {((comment.user_id === userData.id) || userData.admin === 1 && edit === false) && <FiMoreVertical onClick={(e) => storeCommentIdAndSetEdit(comment.id)}/>}
+                   {((comment.user_id === userData.id) || userData.admin === 1 && edit === true) && 
                    <div className="edit-comment-options">
                         <label className="edit-comment-label" htmlFor="text" onClick={()=> setEdit(!edit)}><FaPencilAlt onClick={(e) => setCommentUpdated(!commentUpdated)} /></label>
                         <br />
