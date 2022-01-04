@@ -19,7 +19,7 @@ exports.createComment =(req, res,next) => {
    // get postId from params
     const postId = req.params.id;
 
-    const sqlCreateComment = `INSERT INTO comments (post_id,user_id,message) VALUES(${postId}, ${userid},'${req.body.message}')`
+    const sqlCreateComment = `INSERT INTO comments (post_id,user_id,message) VALUES(${postId}, ${userid},"${req.body.message}")`
     sql.query(sqlCreateComment,(err,data) =>{
         if(err){
             console.log(err);
