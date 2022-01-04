@@ -109,6 +109,7 @@ export default function Profile() {
           withCredentials: true,
         })
         .then(response =>{
+          window.location = window.location = "/profile"
             console.log(response);
         })
         .catch(error =>{
