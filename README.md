@@ -1,6 +1,6 @@
 # OpenClassRooms - Projet 7 Groupomania 💬
 
-![alt_text](https://github.com/Perpel667/OliveiraLucas_7_25112021/frontend/public/assets/logoicon-left-font-monochrome-black.svg?raw=true)
+![alt_text](https://github.com/Perpel667/OliveiraLucas_7_25112021/frontend/public/assets/logoicon-left-font-monochrome-black.svg)
 
 
 Une petite description du projet
