@@ -1,7 +1,7 @@
 # OpenClassRooms - Projet 7 Groupomania 💬
 
+![groupomania_logo](https://imgur.com/YBAg3vv)
 
-https://imgur.com/YBAg3vv
 
 Une petite description du projet
 
