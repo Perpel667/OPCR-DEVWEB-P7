@@ -50,6 +50,9 @@ Pour installer les dépendances
 puis
 `npm install`
 
+> Ajouter dans server.js ligne 35 l'url sur lequel votre application react sera lancée. 
+
+> exemple :  origin ["http://localhost:5000","http://localhost:3000","http://localhost:3001","votre url localhost"]
 
 ### Installation du Frontend
 Pour installer les dépendances
