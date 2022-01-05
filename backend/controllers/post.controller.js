@@ -91,7 +91,7 @@ sql.query(`SELECT * FROM post WHERE id = ${postId}`,(err, data) =>{
           console.log(err);
         } console.log("Image supprimée du serveur.");
       }) 
-      const sqlInsertImage = `UPDATE post SET message = '${req.body.message}', image_url = '${file.filename}' WHERE id = ${req.params.id}`;
+      const sqlInsertImage = `UPDATE post SET message = "${req.body.message}", image_url = "${file.filename}" WHERE id = ${req.params.id}`;
       sql.query(sqlInsertImage, (err, result) => {
         if (err) {
           res.status(404).json({ err });
