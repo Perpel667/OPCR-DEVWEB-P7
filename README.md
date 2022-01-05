@@ -1,67 +1,98 @@
+
 # OpenClassRooms - Projet 7 Groupomania 💬
 
-![alt_text](https://github.com/Perpel667/OliveiraLucas_7_25112021/frontend/public/assets/logoicon-left-font-monochrome-black.svg)
+<p align="center">
+  <img  src="https://user-images.githubusercontent.com/81812969/148199004-dff8671c-8478-46b3-844f-6e9fbcfed17e.png">
+</p>
+Le projet consiste à construire un réseau social interne pour les employés de Groupomania. Le but de cet outil est de faciliter les interactions entre collègues.
+
+## Tâches
+
+-**Responsive Desktop & Tablette** : ✅  
+-**Compatible Chrome & Firefox** : ✅  
+-**Fonctionnalités simples à comprendre** : ✅  
+-**Complétion du profil courte et rapide** : ✅  
+-**Ajout d'une image de profil personnalisée** : ✅  
+-**Suppression du compte possible** : ✅  
+-**Forum ou poster des images et du texte** : ✅  
+-**Modification du text ou de l'image d'un post** : ✅  
+-**Possibilité de Like les publications** : ✅  
+-**Ajout d'un commentaire** : ✅  
+-**Modification et suppression des commentaires** : ✅  
+-**Dernières publications facilement accessibles** : ✅  
+-**Compte Administrateur pour pouvoir modéré les interactions** : ✅  
+-**Données et API sécurisées** : ✅  
+-**Utilisation d'un Framework Front-end (React)** : ✅  
+-**Standards WCAG respectés** : ✅
+
+## Pré-requis
+
+- IDE de votre choix
+- [MySQL](https://www.mysql.com/fr/)
+- [Node.js](https://nodejs.org/en/)
+
+## Installation
+
+- Clonez le repo sur votre ordinateur
+
+### Database
+
+Lancer votre serveur MySQL
+
+Puis importer la base de données que vous pouvez trouver ici :
+
+> backend/database_backup/groupomania.sql
+
+### Installation du Backend
+Pour installer les dépendances
+
+`cd backend`
+puis
+`npm install`
 
 
-Une petite description du projet
+### Installation du Frontend
+Pour installer les dépendances
 
-## Pour commencer
-
-Entrez ici les instructions pour bien débuter avec votre projet...
-
-### Pré-requis
-
-Ce qu'il est requis pour commencer avec votre projet...
-
-- Programme 1
-- Programme 2
-- etc...
-
-### Installation
-
-Les étapes pour installer votre programme....
-
-Dites ce qu'il faut faire...
-
-_exemple_: Executez la commande ``telnet mapscii.me`` pour commencer ensuite [...]
-
-
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+`cd frontend`
+puis
+`npm install`
 
 ## Démarrage
 
-Dites comment faire pour lancer votre projet
+- Pour lancer l'API
+`cd backend` =>
+`npm start`
 
-## Fabriqué avec
+- Pour lancer l'Application React
+`cd frontend` =>
+`npm start`
 
-Entrez les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
+## Technologies utilisées
 
-_exemples :_
-* [Materialize.css](http://materializecss.com) - Framework CSS (front-end)
-* [Atom](https://atom.io/) - Editeur de textes
+_base de données :_
+*  [MySQL](https://www.mysql.com/fr/)
 
-## Contributing
+_backend :_
+* [Node.js](https://nodejs.org/en/)
+* [Express](https://expressjs.com/fr/) - Infrastructure Web minimaliste, souple et rapide pour Node.js
 
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md](https://example.org) pour savoir comment le faire.
+_frontend :_
+* [React.js](https://beta.reactjs.org/)
+* [Redux](https://redux.js.org/)
 
-## Versions
-Listez les versions ici 
-_exemple :_
-**Dernière version stable :** 5.0
-**Dernière version :** 5.1
-Liste des versions : [Cliquer pour afficher](https://github.com/your/project-name/tags)
-_(pour le lien mettez simplement l'URL de votre projets suivi de ``/tags``)_
+## Compétences techniques :
+* HTML
+* CSS/SCSS
+* JS
+* API REST
+* REACT.JS
+* NODEJS/EXPRESS
+* AXIOS
+* MOMENT
+* BCRYPT
+* JWT
+* MYSQL
 
-## Auteurs
-Listez le(s) auteur(s) du projet ici !
-* **Jhon doe** _alias_ [@outout14](https://github.com/outout14)
-
-Lisez la liste des [contributeurs](https://github.com/your/project/contributors) pour voir qui à aidé au projet !
-
-_(pour le lien mettez simplement l'URL de votre projet suivi de ``/contirubors``)_
-
-## License
-
-Ce projet est sous licence ``exemple: WTFTPL`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
 
 
