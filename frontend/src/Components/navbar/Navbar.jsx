@@ -29,6 +29,7 @@ export default function Navbar() {
     // logout handle
     const handleLogout = (e) =>{
         // redirect to the login page
+         localStorage.clear();
          window.location = '/login';
 
         // logout
