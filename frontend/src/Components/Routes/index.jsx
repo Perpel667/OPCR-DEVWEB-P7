@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Navigate } from 'react-router-dom';
 
+// Importation des pages //
+
 import Home from '../../Pages/Home/Home';
 import Register from '../../Pages/Register/Register';
 import Login from '../../Pages/Login/Login';
@@ -9,6 +11,7 @@ import Profile from '../../Pages/Profile/Profile';
 import PageNotFound from '../../Pages/PageNotFound/PageNotFound';
 
 export default function Index() {
+  // Check dans le localStorage si on a un user connecté //
   const isAuthenticated = !!localStorage.getItem("userId");
     return (
         <Router>
