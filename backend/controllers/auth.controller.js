@@ -57,7 +57,7 @@ const maxAge = 3 * 24 * 60 * 60 * 1000;
       if (err) {
         res.status(404).json({err: err})
       }else if (data.length == 0) {
-          res.status(404).json({error:"Aucun utilisateur trouver avec cet email"}) //this is what you are missing
+          res.status(404).json({error:"Aucun utilisateur trouver avec cet email"}) 
       } else {
         // Compare password from request & DB
         const match = await bcrypt.compare(req.body.password, data[0].password)
