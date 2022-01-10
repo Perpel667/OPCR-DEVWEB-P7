@@ -56,7 +56,7 @@ export default function Register() {
     <div className="register">
     <div className="registerWrapper">
         <div className="registerLeft">
-            <img src="/assets/logos/icon-left-font-monochrome-black.svg" alt="" className="registerLogo" />
+            <img src="/assets/logos/icon-left-font-monochrome-black.svg" alt="logo groupomania" className="registerLogo" />
             <span className="registerDesc">Bienvenue sur le réseau social de l'entreprise</span>
         </div>
         <div className="registerRight">
