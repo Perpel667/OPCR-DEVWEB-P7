@@ -65,7 +65,7 @@ export default function Login() {
         <div className="login">
             <div className="loginWrapper">
                 <div className="loginLeft">
-                    <img src="/assets/logos/icon-left-font-monochrome-black.svg" alt="" className="loginLogo" />
+                    <img src="/assets/logos/icon-left-font-monochrome-black.svg" alt="logo groupomania" className="loginLogo" />
                     <span className="loginDesc">Bienvenue sur le réseau social de l'entreprise</span>
                 </div>
                 <div className="loginRight">
