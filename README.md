@@ -50,6 +50,13 @@ Pour installer les dépendances
 puis
 `npm install`
 
+> Créer un fichier .env dans le dossier config qui comportera :
+* PORT=(le port sur lequel vous souhaitez lancer votre serveur Node).
+* DBPASSWORD=(le mot de passe de la base de données).
+* DBHOST = localhost
+* DBUSER = ( le username de votre MySQL)
+* JWT_SECRET=MyAwesomeSuperSecret
+
 > Ajouter dans server.js ligne 35 l'url sur lequel votre application react sera lancée. 
 
 > exemple :  origin ["http://localhost:5000","http://localhost:3000","http://localhost:3001","votre url localhost"]
