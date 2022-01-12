@@ -59,7 +59,7 @@ exports.updateComment =(req, res,next) => {
                     console.log(err);
                 }
                 if((data[0].user_id == userid) || userData[0].admin == 1){
-                   const sqlUpdateComment = `UPDATE comments SET message='${req.body.message}' WHERE id = ${commentId} AND user_id = ${userid}`
+                   const sqlUpdateComment = `UPDATE comments SET message="${req.body.message}" WHERE id = ${commentId} AND user_id = ${userid}`
                    sql.query(sqlUpdateComment,(err,result)=>{
                        if (err) {
                            res.status(404).json({ err: err})
