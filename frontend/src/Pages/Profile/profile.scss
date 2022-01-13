@@ -65,6 +65,14 @@
   box-shadow: 1px 3px 8px #ababab;
   font-weight: 700;
   font-size: 16px;
+  min-height: 50px;
+  transition: all 100ms linear;
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+p.errorMessage {
+  margin: 5px;
 }
 
 .delete-btn {
@@ -74,8 +82,8 @@
 }
 .confirm-btn {
   width: 100%;
-  margin-top: 1rem;
   background-color: #28a745;
+  color: #000000;
 }
 
 .modifyPasswordForm {
@@ -119,6 +127,6 @@
   margin-right: 10px;
 }
 .deleteCancel {
-  background-color: gray;
+  background-color: #737373;
   margin-left: 10px;
 }

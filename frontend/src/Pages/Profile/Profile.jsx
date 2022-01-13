@@ -125,13 +125,13 @@ export default function Profile() {
             <div className="profile">
           <div className="profileTop">
             <div className="profileTitle">
-                <img className="profileCoverImg" src={profileBackground} alt="" />
+                <img className="profileCoverImg" src={profileBackground} alt="couverture profil" />
                 <div className="profilePictureContainer">
-                    <img src={`http://localhost:5000/api/${userData.image}`} alt="" className="profileUserImg" />
+                    <img src={`http://localhost:5000/api/${userData.image}`} alt="utilisateur" className="profileUserImg" />
                         <div className="modifyUserImg">
                             <input type="file" name="image" id="image" style={{display: "none"}} onChange={HandleUpdateProfilePicture}/>
                             <label htmlFor="image" >
-                                <span className='editImage'><AiFillCamera /></span>
+                                <span className='editImage'><AiFillCamera aria-label="Modifier photo de profil" /></span>
                             </label> 
                          </div>
                 </div>
@@ -140,7 +140,7 @@ export default function Profile() {
           </div>
           <div className="profileBottom">
               <form className="modifyPasswordForm" action="" onSubmit={handleSubmit(handleModify)}>
-                  <label htmlFor="modifyPassword">Modifier votre mot de passe</label>
+                  <label htmlFor="password">Modifier votre mot de passe</label>
                   <input 
                     {...register("password", {
                         required: true,
@@ -148,11 +148,11 @@ export default function Profile() {
                       })}
                     type="password" id="password" placeholder="Nouveau mot de passe" className='changePassword ProfilePassword' onChange={(e) => setPassword(e.target.value)} value={password}/>
                     <div className="password error">
-                    {errors?.password?.type === "required" && (<p>Ce champs est obligatoire.</p>)}
-                    {errors?.password?.type === "pattern" && (<p>Au moins 8 caractères dont une majuscule une minuscule un chiffre et un symbole.</p>)}
+                    {errors?.password?.type === "required" && (<p className="errorMessage">Ce champs est obligatoire.</p>)}
+                    {errors?.password?.type === "pattern" && (<p className="errorMessage">Au moins 8 caractères dont une majuscule une minuscule un chiffre et un symbole.</p>)}
                     </div>
                   {/* <input className="changePassword ProfilePassword" type="password" /> */}
-                  <label htmlFor="confirmPassword">Confirmez</label>
+                  <label htmlFor="Confirmpassword">Confirmez</label>
                   <input 
                     {...register("ConfirmPassword", {
                         required: true,
@@ -160,8 +160,8 @@ export default function Profile() {
                       })}
                     type="password" id="Confirmpassword" placeholder="Confirmez" className='confirmPassword ProfilePassword'/>
                     <div className="password error">
-                    {errors?.ConfirmPassword?.type === "required" && (<p>Ce champs est obligatoire.</p>)}
-                    {errors?.ConfirmPassword?.type === "validate" && (<p>Ce n'est pas le même mot de passe</p>)}
+                    {errors?.ConfirmPassword?.type === "required" && (<p className="errorMessage">Ce champs est obligatoire.</p>)}
+                    {errors?.ConfirmPassword?.type === "validate" && (<p className="errorMessage">Ce n'est pas le même mot de passe</p>)}
                     </div>
                     <div className="password succes"></div>
                   {/* <input placeholder="Confirmez votre nouveau mot de passe" className="confirmPassword ProfilePassword" type="password" /> */}
